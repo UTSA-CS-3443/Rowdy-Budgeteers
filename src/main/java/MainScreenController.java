@@ -1,4 +1,4 @@
-package RowdyBudgeteers;
+package main.java;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class MainScreenController {
 
     public void initialize() {
-        System.out.println("working");
+
     }
 
 }
