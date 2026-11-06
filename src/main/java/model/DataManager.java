@@ -9,7 +9,7 @@ public class DataManager {
     private List<Person> users;
     private List<Budget> budgets;
     private List<Transaction> transactions;
-
+//comment
     private String dataDirectory;
 
     public DataManager() {
