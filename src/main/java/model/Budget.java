@@ -6,6 +6,7 @@ import java.time.LocalDate;
 public class Budget implements Serializable {
 // serializable allows java to convert objects into a format that can be saved and recontrsucted
     // without it, serialization used by DataManager would not work
+    // Jesse was here
     private String budgetID;
     private String budgetType;
     private double budgetLimit;
