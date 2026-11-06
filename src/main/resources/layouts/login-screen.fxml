@@ -1,14 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.text.Font?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.paint.Color?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="RowdyBudgeteers.BankingApplication"
-            prefHeight="400.0" prefWidth="600.0">
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml">
 
-</AnchorPane>
+    <top>
+        <StackPane prefHeight="240">
+
+            <!-- Navy Corner -->
+            <Polygon points="0,0, 185,0, 0,185"
+                     fill="0x12304FFF"
+                     StackPane.alignment="TOP_LEFT"/>
+
+            <!-- Orange Corner -->
+            <Polygon points="185,0, 400,0, 400,185"
+                     fill="0xC44D08FF"
+                     StackPane.alignment="TOP_RIGHT"/>
+
+            <!-- Application Name and Logo -->
+            <VBox alignment="CENTER"
+                  spacing="5">
+
+                <Label text="ROWDY BUDGETEERS">
+                    <font>
+                        <Font size="23" name="System Bold"/>
+                    </font>
+                    <textFill>
+                        <Color red="0.2" green="0.2" blue="0.2"/>
+                    </textFill>
+                </Label>
+
+                <ImageView fitWidth="180"
+                           fitHeight="115"
+                           preserveRatio="true">
+                    <image>
+                        <Image url="@../images/logoImage.png"/>
+                    </image>
+                </ImageView>
+
+            </VBox>
+
+        </StackPane>
+    </top>
+
+    <!-- LOGIN FORM -->
+    <center>
+        <VBox alignment="CENTER"
+              spacing="15"
+              maxWidth="340">
+
+            <padding>
+                <Insets top="30" right="30" bottom="30" left="30"/>
+            </padding>
+
+            <Label text="LOGIN">
+                <font>
+                    <Font size="28" name="System Bold"/>
+                </font>
+                <textFill>
+                    <Color red="0.2" green="0.2" blue="0.2"/>
+                </textFill>
+            </Label>
+
+            <TextField promptText="Username"
+                       prefHeight="42"/>
+
+            <PasswordField promptText="Password"
+                           prefHeight="42"/>
+
+            <Label text="Enter your credentials to continue"
+                   wrapText="true">
+                <textFill>
+                    <Color red="0.4" green="0.4" blue="0.4"/>
+                </textFill>
+            </Label>
+
+            <Button text="Enter"
+                    prefWidth="200"
+                    prefHeight="42"/>
+
+        </VBox>
+    </center>
+
+</BorderPane>
