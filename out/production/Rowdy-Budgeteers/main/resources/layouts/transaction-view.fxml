@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml">
+
+    <top>
+        <HBox alignment="CENTER_LEFT"
+              spacing="20"
+              prefHeight="75">
+            <padding>
+                <Insets left="25" right="25"/>
+            </padding>
+
+            <Label text="ROWDY BUDGETEERS"
+                   textFill="#3C9EAD">
+                <font><Font size="22" name="System Bold"/></font>
+            </Label>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Button text="Dashboard"/>
+            <Button text="Transactions"/>
+            <Button text="Budgets"/>
+            <Button text="Logout"/>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox spacing="20">
+            <padding>
+                <Insets top="30" right="35" bottom="30" left="35"/>
+            </padding>
+
+            <Label text="Transactions"
+                   textFill="#333333">
+                <font><Font size="28" name="System Bold"/></font>
+            </Label>
+
+            <Label text="Add and manage your purchases."/>
+
+            <Label text="Add a Transaction"
+                   textFill="#333333">
+                <font><Font size="19" name="System Bold"/></font>
+            </Label>
+
+            <HBox spacing="12">
+                <TextField promptText="Purchase name"
+                           prefWidth="220"/>
+
+                <ComboBox promptText="Category"
+                          prefWidth="170"/>
+
+                <TextField promptText="Amount"
+                           prefWidth="130"/>
+
+                <DatePicker promptText="Purchase date"
+                            prefWidth="150"/>
+
+                <Button text="Add Transaction"
+                        prefHeight="35"/>
+            </HBox>
+
+            <Label text="Transaction History"
+                   textFill="#333333">
+                <font><Font size="19" name="System Bold"/></font>
+            </Label>
+
+            <TableView prefHeight="350">
+                <columns>
+                    <TableColumn text="Transaction ID" prefWidth="120"/>
+                    <TableColumn text="Purchase" prefWidth="200"/>
+                    <TableColumn text="Category" prefWidth="150"/>
+                    <TableColumn text="Date" prefWidth="150"/>
+                    <TableColumn text="Amount" prefWidth="130"/>
+                </columns>
+
+                <placeholder>
+                    <Label text="Your transactions will appear here."/>
+                </placeholder>
+            </TableView>
+
+            <HBox spacing="12">
+                <Button text="Update Selected"/>
+                <Button text="Delete Selected"/>
+            </HBox>
+
+        </VBox>
+    </center>
+
+</BorderPane>

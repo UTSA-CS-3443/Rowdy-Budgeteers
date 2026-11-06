@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml">
+
+    <top>
+        <HBox alignment="CENTER_LEFT"
+              spacing="20"
+              prefHeight="75">
+            <padding>
+                <Insets left="25" right="25"/>
+            </padding>
+
+            <Label text="ROWDY BUDGETEERS"
+                   textFill="#3C9EAD">
+                <font><Font size="22" name="System Bold"/></font>
+            </Label>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Button text="Dashboard"/>
+            <Button text="Transactions"/>
+            <Button text="Budgets"/>
+            <Button text="Logout"/>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox spacing="20">
+            <padding>
+                <Insets top="30" right="35" bottom="30" left="35"/>
+            </padding>
+
+            <Label text="Budgets and Financial Goals"
+                   textFill="#333333">
+                <font><Font size="28" name="System Bold"/></font>
+            </Label>
+
+            <Label text="Create and manage your spending limits."/>
+
+            <Label text="Create a Budget"
+                   textFill="#333333">
+                <font><Font size="19" name="System Bold"/></font>
+            </Label>
+
+            <HBox spacing="12">
+                <ComboBox promptText="Select budget category"
+                          prefWidth="210"/>
+
+                <TextField promptText="Budget amount"
+                           prefWidth="180"/>
+
+                <Button text="Add Budget"
+                        prefHeight="35"/>
+            </HBox>
+
+            <Label text="Your Budgets"
+                   textFill="#333333">
+                <font><Font size="19" name="System Bold"/></font>
+            </Label>
+
+            <TableView prefHeight="300">
+                <columns>
+                    <TableColumn text="Budget ID" prefWidth="110"/>
+                    <TableColumn text="Category" prefWidth="170"/>
+                    <TableColumn text="Budget Limit" prefWidth="150"/>
+                    <TableColumn text="Amount Spent" prefWidth="150"/>
+                    <TableColumn text="Remaining" prefWidth="150"/>
+                    <TableColumn text="Status" prefWidth="120"/>
+                </columns>
+
+                <placeholder>
+                    <Label text="Your budgets will appear here."/>
+                </placeholder>
+            </TableView>
+
+            <HBox spacing="12">
+                <Button text="Update Selected"/>
+                <Button text="Delete Selected"/>
+                <Button text="Refresh"/>
+            </HBox>
+
+            <Label text="Your financial goals will appear here."
+                   textFill="#666666"/>
+
+        </VBox>
+    </center>
+
+</BorderPane>
