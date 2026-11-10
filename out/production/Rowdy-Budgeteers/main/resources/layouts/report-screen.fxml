@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.text.Font?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            style="-fx-background-color: #F7F8FA;">
+
+    <!-- TOP NAVIGATION BAR -->
+    <top>
+        <StackPane prefHeight="100"
+                   style="-fx-background-color: white;">
+
+            <!-- Navy Corner -->
+            <Polygon points="0,0, 180,0, 0,100"
+                     fill="#12304F"
+                     StackPane.alignment="TOP_LEFT"/>
+
+            <!-- Orange Corner -->
+            <Polygon points="180,0, 340,0, 340,100"
+                     fill="#C44D08"
+                     StackPane.alignment="TOP_RIGHT"/>
+
+            <HBox alignment="CENTER_LEFT"
+                  spacing="12">
+
+                <padding>
+                    <Insets left="35" right="35"/>
+                </padding>
+
+                <!-- Logo -->
+                <ImageView fitWidth="65"
+                           fitHeight="65"
+                           preserveRatio="true">
+                    <image>
+                        <Image url="@../images/logoImage.png"/>
+                    </image>
+                </ImageView>
+
+                <!-- Application Name -->
+                <Label text="ROWDY BUDGETEERS"
+                       textFill="#12304F">
+                    <font>
+                        <Font size="20" name="System Bold"/>
+                    </font>
+                </Label>
+
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <!-- Navigation Buttons -->
+                <Button text="Dashboard"
+                        style="-fx-background-color: transparent;
+                               -fx-text-fill: #12304F;
+                               -fx-font-weight: bold;
+                               -fx-padding: 9 16;"/>
+
+                <Button text="Transactions"
+                        style="-fx-background-color: transparent;
+                               -fx-text-fill: #12304F;
+                               -fx-font-weight: bold;
+                               -fx-padding: 9 16;"/>
+
+                <Button text="Budgets"
+                        style="-fx-background-color: transparent;
+                               -fx-text-fill: #12304F;
+                               -fx-font-weight: bold;
+                               -fx-padding: 9 16;"/>
+
+                <Button text="Reports"
+                        style="-fx-background-color: #12304F;
+                               -fx-text-fill: white;
+                               -fx-font-weight: bold;
+                               -fx-background-radius: 5;
+                               -fx-padding: 9 16;"/>
+
+                <Button text="Logout"
+                        style="-fx-background-color: #C44D08;
+                               -fx-text-fill: white;
+                               -fx-font-weight: bold;
+                               -fx-background-radius: 5;
+                               -fx-padding: 9 16;"/>
+
+            </HBox>
+        </StackPane>
+    </top>
+
+    <!-- MAIN REPORT CONTENT -->
+    <center>
+        <VBox spacing="22">
+
+            <padding>
+                <Insets top="35"
+                        right="40"
+                        bottom="35"
+                        left="40"/>
+            </padding>
+
+            <!-- PAGE TITLE -->
+            <VBox spacing="8">
+
+                <Label text="Financial Reports"
+                       textFill="#12304F">
+                    <font>
+                        <Font size="28" name="System Bold"/>
+                    </font>
+                </Label>
+
+                <Label text="Get a quick overview of your financial activity."
+                       textFill="#666666">
+                    <font>
+                        <Font size="14"/>
+                    </font>
+                </Label>
+
+            </VBox>
+
+            <!-- REPORT PERIOD -->
+            <HBox alignment="CENTER_LEFT"
+                  spacing="15"
+                  style="-fx-background-color: white;
+                         -fx-background-radius: 8;
+                         -fx-border-color: #E2E5E9;
+                         -fx-border-radius: 8;
+                         -fx-padding: 18;">
+
+                <Label text="Report Period:"
+                       textFill="#12304F">
+                    <font>
+                        <Font size="14" name="System Bold"/>
+                    </font>
+                </Label>
+
+                <ComboBox promptText="Select period"
+                          prefWidth="200"
+                          prefHeight="38"/>
+
+            </HBox>
+
+            <!-- FINANCIAL SUMMARY -->
+            <VBox spacing="15">
+
+                <Label text="Financial Overview"
+                       textFill="#12304F">
+                    <font>
+                        <Font size="20" name="System Bold"/>
+                    </font>
+                </Label>
+
+                <HBox spacing="18">
+
+                    <!-- TOTAL INCOME -->
+                    <VBox spacing="12"
+                          HBox.hgrow="ALWAYS"
+                          style="-fx-background-color: white;
+                                 -fx-background-radius: 8;
+                                 -fx-border-color: #E2E5E9;
+                                 -fx-border-radius: 8;
+                                 -fx-padding: 22;">
+
+                        <Label text="TOTAL INCOME"
+                               textFill="#666666">
+                            <font>
+                                <Font size="13" name="System Bold"/>
+                            </font>
+                        </Label>
+
+                        <Label text="\$6,250.00"
+                               textFill="#12304F">
+                            <font>
+                                <Font size="25" name="System Bold"/>
+                            </font>
+                        </Label>
+
+                        <Region prefHeight="3"
+                                maxHeight="3"
+                                style="-fx-background-color: #12304F;
+                                       -fx-background-radius: 2;"/>
+
+                    </VBox>
+
+                    <!-- TOTAL EXPENSES -->
+                    <VBox spacing="12"
+                          HBox.hgrow="ALWAYS"
+                          style="-fx-background-color: white;
+                                 -fx-background-radius: 8;
+                                 -fx-border-color: #E2E5E9;
+                                 -fx-border-radius: 8;
+                                 -fx-padding: 22;">
+
+                        <Label text="TOTAL EXPENSES"
+                               textFill="#666666">
+                            <font>
+                                <Font size="13" name="System Bold"/>
+                            </font>
+                        </Label>
+
+                        <Label text="\$1,250.00"
+                               textFill="#C44D08">
+                            <font>
+                                <Font size="25" name="System Bold"/>
+                            </font>
+                        </Label>
+
+                        <Region prefHeight="3"
+                                maxHeight="3"
+                                style="-fx-background-color: #C44D08;
+                                       -fx-background-radius: 2;"/>
+
+                    </VBox>
+
+                    <!-- NET SAVINGS -->
+                    <VBox spacing="12"
+                          HBox.hgrow="ALWAYS"
+                          style="-fx-background-color: white;
+                                 -fx-background-radius: 8;
+                                 -fx-border-color: #E2E5E9;
+                                 -fx-border-radius: 8;
+                                 -fx-padding: 22;">
+
+                        <Label text="NET SAVINGS"
+                               textFill="#666666">
+                            <font>
+                                <Font size="13" name="System Bold"/>
+                            </font>
+                        </Label>
+
+                        <Label text="\$5,000.00"
+                               textFill="#12304F">
+                            <font>
+                                <Font size="25" name="System Bold"/>
+                            </font>
+                        </Label>
+
+                        <Region prefHeight="3"
+                                maxHeight="3"
+                                style="-fx-background-color: #12304F;
+                                       -fx-background-radius: 2;"/>
+
+                    </VBox>
+
+                </HBox>
+            </VBox>
+
+            <!-- SPENDING BREAKDOWN -->
+            <VBox spacing="15"
+                  style="-fx-background-color: white;
+                         -fx-background-radius: 8;
+                         -fx-border-color: #E2E5E9;
+                         -fx-border-radius: 8;
+                         -fx-padding: 22;">
+
+                <Label text="Spending Breakdown"
+                       textFill="#12304F">
+                    <font>
+                        <Font size="19" name="System Bold"/>
+                    </font>
+                </Label>
+
+                <Label text="See how much you spend in each category."
+                       textFill="#666666"/>
+
+                <TableView prefHeight="300">
+
+                    <columns>
+                        <TableColumn text="Category"
+                                     prefWidth="220"/>
+
+                        <TableColumn text="Total Spent"
+                                     prefWidth="200"/>
+
+                        <TableColumn text="Percentage"
+                                     prefWidth="180"/>
+                    </columns>
+
+                    <placeholder>
+                        <Label text="Your spending breakdown will appear here."
+                               textFill="#777777"/>
+                    </placeholder>
+
+                </TableView>
+
+            </VBox>
+
+        </VBox>
+    </center>
+
+</BorderPane>

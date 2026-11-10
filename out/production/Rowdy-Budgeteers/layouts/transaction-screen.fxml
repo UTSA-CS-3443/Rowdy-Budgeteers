@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.text.Font?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            style="-fx-background-color: #F7F8FA;">
+
+    <!-- TOP NAVIGATION BAR -->
+    <top>
+        <StackPane prefHeight="100"
+                   style="-fx-background-color: white;">
+
+            <!-- Navy Corner -->
+            <Polygon points="0,0, 180,0, 0,100"
+                     fill="#12304F"
+                     StackPane.alignment="TOP_LEFT"/>
+
+            <!-- Orange Corner -->
+            <Polygon points="180,0, 340,0, 340,100"
+                     fill="#C44D08"
+                     StackPane.alignment="TOP_RIGHT"/>
+
+            <HBox alignment="CENTER_LEFT"
+                  spacing="12">
+
+                <padding>
+                    <Insets left="35" right="35"/>
+                </padding>
+
+                <!-- Logo -->
+                <ImageView fitWidth="65"
+                           fitHeight="65"
+                           preserveRatio="true">
+                    <image>
+                        <Image url="@../images/logoImage.png"/>
+                    </image>
+                </ImageView>
+
+                <!-- Application Name -->
+                <Label text="ROWDY BUDGETEERS"
+                       textFill="#12304F">
+                    <font>
+                        <Font size="20" name="System Bold"/>
+                    </font>
+                </Label>
+
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <!-- Navigation Buttons -->
+                <Button text="Dashboard"
+                        style="-fx-background-color: transparent;
+                               -fx-text-fill: #12304F;
+                               -fx-font-weight: bold;
+                               -fx-padding: 9 16;"/>
+
+                <Button text="Transactions"
+                        style="-fx-background-color: #12304F;
+                               -fx-text-fill: white;
+                               -fx-font-weight: bold;
+                               -fx-background-radius: 5;
+                               -fx-padding: 9 16;"/>
+
+                <Button text="Budgets"
+                        style="-fx-background-color: transparent;
+                               -fx-text-fill: #12304F;
+                               -fx-font-weight: bold;
+                               -fx-padding: 9 16;"/>
+
+                <Button text="Reports"
+                        style="-fx-background-color: transparent;
+                               -fx-text-fill: #12304F;
+                               -fx-font-weight: bold;
+                               -fx-padding: 9 16;"/>
+
+                <Button text="Logout"
+                        style="-fx-background-color: #C44D08;
+                               -fx-text-fill: white;
+                               -fx-font-weight: bold;
+                               -fx-background-radius: 5;
+                               -fx-padding: 9 16;"/>
+
+            </HBox>
+        </StackPane>
+    </top>
+
+    <!-- MAIN TRANSACTION CONTENT -->
+    <center>
+        <VBox spacing="22">
+
+            <padding>
+                <Insets top="35"
+                        right="40"
+                        bottom="35"
+                        left="40"/>
+            </padding>
+
+            <!-- PAGE TITLE -->
+            <VBox spacing="8">
+
+                <Label text="Transactions"
+                       textFill="#12304F">
+                    <font>
+                        <Font size="28" name="System Bold"/>
+                    </font>
+                </Label>
+
+                <Label text="Add and manage your purchases."
+                       textFill="#666666">
+                    <font>
+                        <Font size="14"/>
+                    </font>
+                </Label>
+
+            </VBox>
+
+            <!-- ADD TRANSACTION SECTION -->
+            <VBox spacing="18"
+                  style="-fx-background-color: white;
+                         -fx-background-radius: 8;
+                         -fx-border-color: #E2E5E9;
+                         -fx-border-radius: 8;
+                         -fx-padding: 22;">
+
+                <Label text="Add a Transaction"
+                       textFill="#12304F">
+                    <font>
+                        <Font size="19" name="System Bold"/>
+                    </font>
+                </Label>
+
+                <HBox spacing="12"
+                      alignment="CENTER_LEFT">
+
+                    <TextField promptText="Purchase name"
+                               prefWidth="220"
+                               prefHeight="40"/>
+
+                    <ComboBox promptText="Category"
+                              prefWidth="170"
+                              prefHeight="40"/>
+
+                    <TextField promptText="Amount"
+                               prefWidth="130"
+                               prefHeight="40"/>
+
+                    <DatePicker promptText="Purchase date"
+                                prefWidth="150"
+                                prefHeight="40"/>
+
+                    <Button text="Add Transaction"
+                            prefHeight="40"
+                            style="-fx-background-color: #C44D08;
+                                   -fx-text-fill: white;
+                                   -fx-font-weight: bold;
+                                   -fx-background-radius: 5;
+                                   -fx-padding: 0 18;"/>
+
+                </HBox>
+            </VBox>
+
+            <!-- TRANSACTION HISTORY SECTION -->
+            <VBox spacing="15"
+                  style="-fx-background-color: white;
+                         -fx-background-radius: 8;
+                         -fx-border-color: #E2E5E9;
+                         -fx-border-radius: 8;
+                         -fx-padding: 22;">
+
+                <Label text="Transaction History"
+                       textFill="#12304F">
+                    <font>
+                        <Font size="19" name="System Bold"/>
+                    </font>
+                </Label>
+
+                <TableView prefHeight="350">
+
+                    <columns>
+                        <TableColumn text="Transaction ID"
+                                     prefWidth="120"/>
+
+                        <TableColumn text="Purchase"
+                                     prefWidth="200"/>
+
+                        <TableColumn text="Category"
+                                     prefWidth="150"/>
+
+                        <TableColumn text="Date"
+                                     prefWidth="150"/>
+
+                        <TableColumn text="Amount"
+                                     prefWidth="130"/>
+                    </columns>
+
+                    <placeholder>
+                        <Label text="Your transactions will appear here."
+                               textFill="#777777"/>
+                    </placeholder>
+
+                </TableView>
+
+                <!-- TRANSACTION ACTION BUTTONS -->
+                <HBox spacing="12">
+
+                    <Button text="Update Selected"
+                            style="-fx-background-color: #12304F;
+                                   -fx-text-fill: white;
+                                   -fx-font-weight: bold;
+                                   -fx-background-radius: 5;
+                                   -fx-padding: 9 16;"/>
+
+                    <Button text="Delete Selected"
+                            style="-fx-background-color: #C44D08;
+                                   -fx-text-fill: white;
+                                   -fx-font-weight: bold;
+                                   -fx-background-radius: 5;
+                                   -fx-padding: 9 16;"/>
+
+                </HBox>
+
+            </VBox>
+
+        </VBox>
+    </center>
+
+</BorderPane>

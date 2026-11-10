@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.text.Font?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.paint.Color?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            style="-fx-background-color: #F7F8FA;">
+
+    <!-- TOP NAVIGATION -->
+    <top>
+        <StackPane prefHeight="100"
+                   style="-fx-background-color: white;">
+
+            <!-- Navy Corner -->
+            <Polygon points="0,0, 180,0, 0,100"
+                     fill="#12304F"
+                     StackPane.alignment="TOP_LEFT"/>
+
+            <!-- Orange Corner -->
+            <Polygon points="180,0, 340,0, 340,100"
+                     fill="#C44D08"
+                     StackPane.alignment="TOP_RIGHT"/>
+
+            <HBox alignment="CENTER_LEFT"
+                  spacing="12">
+
+                <padding>
+                    <Insets left="35" right="35"/>
+                </padding>
+
+                <!-- Logo -->
+                <ImageView fitWidth="65"
+                           fitHeight="65"
+                           preserveRatio="true">
+                    <image>
+                        <Image url="@../images/logoImage.png"/>
+                    </image>
+                </ImageView>
+
+                <!-- Application Name -->
+                <Label text="ROWDY BUDGETEERS"
+                       textFill="#12304F">
+                    <font>
+                        <Font size="20" name="System Bold"/>
+                    </font>
+                </Label>
+
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <!-- Navigation Buttons -->
+                <Button text="Dashboard"
+                        style="-fx-background-color: #12304F;
+                               -fx-text-fill: white;
+                               -fx-font-weight: bold;
+                               -fx-background-radius: 5;
+                               -fx-padding: 9 16;"/>
+
+                <Button text="Transactions"
+                        style="-fx-background-color: transparent;
+                               -fx-text-fill: #12304F;
+                               -fx-font-weight: bold;
+                               -fx-padding: 9 16;"/>
+
+                <Button text="Budgets"
+                        style="-fx-background-color: transparent;
+                               -fx-text-fill: #12304F;
+                               -fx-font-weight: bold;
+                               -fx-padding: 9 16;"/>
+
+                <Button text="Reports"
+                        style="-fx-background-color: transparent;
+                               -fx-text-fill: #12304F;
+                               -fx-font-weight: bold;
+                               -fx-padding: 9 16;"/>
+
+                <Button text="Logout"
+                        style="-fx-background-color: #C44D08;
+                               -fx-text-fill: white;
+                               -fx-font-weight: bold;
+                               -fx-background-radius: 5;
+                               -fx-padding: 9 16;"/>
+
+            </HBox>
+        </StackPane>
+    </top>
+
+    <!-- MAIN CONTENT -->
+    <center>
+        <VBox spacing="20">
+
+            <padding>
+                <Insets top="35"
+                        right="40"
+                        bottom="35"
+                        left="40"/>
+            </padding>
+
+            <!-- PAGE TITLE -->
+            <Label text="Budgets and Financial Goals"
+                   textFill="#12304F">
+                <font>
+                    <Font size="28" name="System Bold"/>
+                </font>
+            </Label>
+
+            <Label text="Create and manage your spending limits."
+                   textFill="#666666">
+                <font>
+                    <Font size="14"/>
+                </font>
+            </Label>
+
+            <!-- CREATE BUDGET SECTION -->
+            <VBox spacing="15"
+                  style="-fx-background-color: white;
+                         -fx-background-radius: 8;
+                         -fx-border-color: #E2E5E9;
+                         -fx-border-radius: 8;
+                         -fx-padding: 20;">
+
+                <Label text="Create a Budget"
+                       textFill="#12304F">
+                    <font>
+                        <Font size="19" name="System Bold"/>
+                    </font>
+                </Label>
+
+                <HBox spacing="12"
+                      alignment="CENTER_LEFT">
+
+                    <ComboBox promptText="Select budget category"
+                              prefWidth="210"
+                              prefHeight="40"/>
+
+                    <TextField promptText="Budget amount"
+                               prefWidth="180"
+                               prefHeight="40"/>
+
+                    <Button text="Add Budget"
+                            prefHeight="40"
+                            style="-fx-background-color: #C44D08;
+                                   -fx-text-fill: white;
+                                   -fx-font-weight: bold;
+                                   -fx-background-radius: 5;
+                                   -fx-padding: 0 20;"/>
+
+                </HBox>
+            </VBox>
+
+            <!-- BUDGET TABLE SECTION -->
+            <VBox spacing="15"
+                  style="-fx-background-color: white;
+                         -fx-background-radius: 8;
+                         -fx-border-color: #E2E5E9;
+                         -fx-border-radius: 8;
+                         -fx-padding: 20;">
+
+                <Label text="Your Budgets"
+                       textFill="#12304F">
+                    <font>
+                        <Font size="19" name="System Bold"/>
+                    </font>
+                </Label>
+
+                <TableView prefHeight="300">
+
+                    <columns>
+                        <TableColumn text="Budget ID" prefWidth="110"/>
+                        <TableColumn text="Category" prefWidth="170"/>
+                        <TableColumn text="Budget Limit" prefWidth="150"/>
+                        <TableColumn text="Amount Spent" prefWidth="150"/>
+                        <TableColumn text="Remaining" prefWidth="150"/>
+                        <TableColumn text="Status" prefWidth="120"/>
+                    </columns>
+
+                    <placeholder>
+                        <Label text="Your budgets will appear here."
+                               textFill="#777777"/>
+                    </placeholder>
+
+                </TableView>
+
+                <!-- TABLE ACTIONS -->
+                <HBox spacing="12">
+
+                    <Button text="Update Selected"
+                            style="-fx-background-color: #12304F;
+                                   -fx-text-fill: white;
+                                   -fx-font-weight: bold;
+                                   -fx-background-radius: 5;
+                                   -fx-padding: 9 16;"/>
+
+                    <Button text="Delete Selected"
+                            style="-fx-background-color: #C44D08;
+                                   -fx-text-fill: white;
+                                   -fx-font-weight: bold;
+                                   -fx-background-radius: 5;
+                                   -fx-padding: 9 16;"/>
+
+                    <Button text="Refresh"
+                            style="-fx-background-color: #E8EDF2;
+                                   -fx-text-fill: #12304F;
+                                   -fx-font-weight: bold;
+                                   -fx-background-radius: 5;
+                                   -fx-padding: 9 16;"/>
+
+                </HBox>
+
+            </VBox>
+
+        </VBox>
+    </center>
+
+</BorderPane>
