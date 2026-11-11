@@ -9,9 +9,9 @@ public class LoginController {
         this.dataManager = dataManager;
     }
 
-    public boolean register(String userName, String password, String email) {
+    public boolean register(String name, String userName, String password, String email) {
 
-        Person newPerson = new Person(userName, password, email);
+        Person newPerson = new Person(name, userName, password, email);
 
         if (!newPerson.createPerson()) {
             return false;

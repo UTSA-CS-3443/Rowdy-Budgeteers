@@ -157,7 +157,7 @@ public class DataManager {
             String line = scan.nextLine();
             Transaction transaction = convertLineToTransaction(line);
             if (transaction != null){
-                boolean t = addTransaction(Transaction transaction);
+                boolean t = addTransaction(transaction);
             }
         }
         scan.close();
