@@ -1,8 +1,7 @@
 package main.java.model;
 
-import java.io.Serializable;
 
-public class Person implements Serializable {
+public class Person{
     private String name;
     private String email;
     private String userName;
@@ -14,7 +13,6 @@ public class Person implements Serializable {
         this.userName = userName;
         this.password = password;
     }
-
     // UML: createPerson(): boolean
     //check for null values, check for whitespace, check for empty stirng
     // make sure every condition is true
@@ -51,7 +49,6 @@ public class Person implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-
     public boolean authenticate(String password) {
         return this.password.equals(password);
     }

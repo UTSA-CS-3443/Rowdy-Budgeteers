@@ -1,9 +1,7 @@
 package main.java.model;
 
-import java.io.Serializable;
-import java.time.LocalDate;
 
-public class Transaction implements Serializable {
+public class Transaction {
 
     private String transactionID;
     private String purchaseName;
