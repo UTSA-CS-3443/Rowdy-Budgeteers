@@ -65,7 +65,7 @@ public class ReportController {
         spendingReport.setTransactions(dataManager.getTransactions());
 
         // Calculate the report information
-        generateMonthlyBudgetReport(Budget budget, List<Transaction> transactions)
+        generateMonthlyBudgetReport(Budget budget, List<Transaction> transactions);
 
         // Display the report
         displayChart(spendingReport);
@@ -82,24 +82,16 @@ public class ReportController {
 
         // Clear the previous chart
         spendingChart.getData().clear();
-
         // Create a new chart series
         XYChart.Series<String, Number> series = new XYChart.Series<>();
-
         // Get spending information by category
         Map<String, Double> spendingData = report.spendingByCategory(dataManager.getTransactions());
-
         // Add each category and its spending to the chart
         for (Map.Entry<String, Double> entry : spendingData.entrySet()) {
-
-            series.getData().add(
-                    new XYChart.Data<>(entry.getKey(), entry.getValue())
-            );
+            series.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
         }
-
         spendingChart.getData().add(series);
     }
-
     // UML: refreshReport(): void
     public void refreshReport() {
 
@@ -107,17 +99,14 @@ public class ReportController {
             generateReport(startDate, endDate);
         }
     }
-
     // Allows the application to provide the shared DataManager
     public void setDataManager(DataManager dataManager) {
         this.dataManager = dataManager;
     }
-
     // Allows the application to provide the logged-in user
     public void setCurrentPerson(Person currentPerson) {
         this.currentPerson = currentPerson;
     }
-
     public Person getCurrentPerson() {
         return currentPerson;
     }
