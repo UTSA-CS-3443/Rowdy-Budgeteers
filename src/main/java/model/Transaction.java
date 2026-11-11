@@ -42,7 +42,7 @@ public class Transaction implements Serializable {
         return purchaseType;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
