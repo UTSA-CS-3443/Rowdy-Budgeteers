@@ -10,25 +10,25 @@ public class DataManager {
     private List<Person> users;
     private List<Budget> budgets;
     private List<Transaction> transactions;
-//comment
+    //comment
     private String dataDirectory;
 
-    public DataManager() {
+    public DataManager() throws FileNotFoundException {
         users = new ArrayList<>();
         budgets = new ArrayList<>();
         transactions = new ArrayList<>();
 
-        dataDirectory = "users.csv";
-
+        dataDirectory = "data"; // checks to make sure the program can see the data folder
         File directory = new File(dataDirectory);
-
         if (!directory.exists()) {
             directory.mkdir();
         }
 
+        String currentUserLogged = "Jesse Briones";
         loadUsers();
         loadBudgets();
-        loadTransactions();
+        String transactionFileName = "data/transactions/" + currentUserLogged + "_transactions";
+        loadTransactions(transactionFileName);
     }
 
     // CREATE SUPPORT
@@ -145,8 +145,7 @@ public class DataManager {
         budgets = loadList("budgets.dat");
     }
 
-    public void loadTransactions(String currentUserLogged) throws FileNotFoundException {
-        String fileName = "data/transactions/" + currentUserLogged + "_transactions";
+    public void loadTransactions(String fileName) throws FileNotFoundException {
         File userTransactions = new File(fileName);
 
         Scanner scan = new Scanner(userTransactions);

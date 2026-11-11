@@ -8,7 +8,7 @@ public class Person implements Serializable {
     private String userName;
     private String password;
 
-    public Person(String name, String email, String userNane, String password) {
+    public Person(String name, String email, String userName, String password) {
         this.name = name;
         this.email = email;
         this.userName = userName;
@@ -42,7 +42,7 @@ public class Person implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-    public void setUserName(String password){
+    public void setUserName(String userName){
         this.userName = userName;
     }
     public void setEmail(String email) {
