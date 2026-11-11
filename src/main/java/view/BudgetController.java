@@ -1,11 +1,15 @@
-package main.java.model;
+package main.java.view;
 
-public class MainBudgetController {
+import main.java.model.Budget;
+import main.java.model.DataManager;
+import main.java.model.Person;
+
+public class BudgetController {
 
     private DataManager dataManager;
     private Person currentPerson;
 
-    public MainBudgetController(DataManager dataManager, Person currentPerson) {
+    public BudgetController(DataManager dataManager, Person currentPerson) {
         this.dataManager = dataManager;
         this.currentPerson = currentPerson;
     }

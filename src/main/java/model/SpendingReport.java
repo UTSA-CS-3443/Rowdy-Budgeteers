@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Locale;
-
 public class SpendingReport {
 
     // Attributes from UML
@@ -19,10 +18,8 @@ public class SpendingReport {
         this.endDate = endDate;
         this.totalSpending = 0.0;
     }
-
     // Calculate total spending within the selected date range
     public double calculateTotal(List<Transaction> transactions) {
-
         totalSpending = 0.0;
         if (transactions == null) {
             return totalSpending;

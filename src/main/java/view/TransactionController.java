@@ -1,11 +1,15 @@
-package main.java.model;
+package main.java.view;
 
-public class MainTransactionController {
+import main.java.model.DataManager;
+import main.java.model.Person;
+import main.java.model.Transaction;
+
+public class TransactionController {
 
     private DataManager dataManager;
     private Person currentPerson;
 
-    public MainTransactionController(DataManager dataManager, Person currentPerson) {
+    public TransactionController(DataManager dataManager, Person currentPerson) {
         this.dataManager = dataManager;
         this.currentPerson = currentPerson;
     }
