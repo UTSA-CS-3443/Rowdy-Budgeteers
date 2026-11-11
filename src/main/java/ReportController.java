@@ -3,7 +3,10 @@ package main.java;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
-
+import main.java.model.SpendingReport;
+import main.java.model.DataManager;
+import main.java.model.Person;
+import main.java.model.SpendingReport;
 import java.time.LocalDate;
 import java.util.Map;
 
