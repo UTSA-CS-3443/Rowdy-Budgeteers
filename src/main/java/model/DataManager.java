@@ -18,7 +18,7 @@ public class DataManager {
         budgets = new ArrayList<>();
         transactions = new ArrayList<>();
 
-        dataDirectory = "data";
+        dataDirectory = "users.csv";
 
         File directory = new File(dataDirectory);
 
