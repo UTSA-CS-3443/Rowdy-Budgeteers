@@ -18,7 +18,7 @@ public class DataManager {
         budgets = new ArrayList<>();
         transactions = new ArrayList<>();
 
-        dataDirectory = "data";
+        dataDirectory = "users.csv";
 
         File directory = new File(dataDirectory);
 
@@ -157,7 +157,7 @@ public class DataManager {
             String line = scan.nextLine();
             Transaction transaction = convertLineToTransaction(line);
             if (transaction != null){
-                boolean t = addTransaction(Transaction transaction);
+                boolean t = addTransaction(transaction);
             }
         }
         scan.close();

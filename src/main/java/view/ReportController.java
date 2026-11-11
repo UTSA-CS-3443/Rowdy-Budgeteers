@@ -41,10 +41,8 @@ public class ReportController {
                 || endDate.isBefore(startDate)) {
             return null;
         }
-
         this.startDate = startDate;
         this.endDate = endDate;
-
         spendingReport = new SpendingReport(startDate, endDate);
 
         // Calculate total spending
@@ -52,20 +50,12 @@ public class ReportController {
 
         // Display the report
         displayChart(spendingReport);
-
         return spendingReport;
-
         this.startDate = startDate;
         this.endDate = endDate;
 
         // Create the report object
-        spendingReport = new SpendingReport(startDate, endDate);
-
-        // Give the report access to existing transactions
-        spendingReport.setTransactions(dataManager.getTransactions());
-
-        // Calculate the report information
-        generateMonthlyBudgetReport(Budget budget, List<Transaction> transactions);
+        spendingReport.calculateTotal(dataManager.getTransactions());
 
         // Display the report
         displayChart(spendingReport);
@@ -85,8 +75,7 @@ public class ReportController {
         // Create a new chart series
         XYChart.Series<String, Number> series = new XYChart.Series<>();
         // Get spending information by category
-        Map<String, Double> spendingData = report.spendingByCategory(dataManager.getTransactions());
-        // Add each category and its spending to the chart
+        Map<String, Double> spendingData = report.spendingByCategory(dataManager.getTransactions());        // Add each category and its spending to the chart
         for (Map.Entry<String, Double> entry : spendingData.entrySet()) {
             series.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
         }
