@@ -3,6 +3,7 @@ package main.java.model;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class DataManager {
 
@@ -134,7 +135,7 @@ public class DataManager {
         }
     }
 
-    // LOAD METHODS
+    // LOAD METHOD
 
     public void loadUsers() {
         users = loadList("users.dat");
@@ -144,8 +145,38 @@ public class DataManager {
         budgets = loadList("budgets.dat");
     }
 
-    public void loadTransactions() {
-        transactions = loadList("transactions.dat");
+    public void loadTransactions(String currentUserLogged) throws FileNotFoundException {
+        String fileName = "data/transactions/" + currentUserLogged + "_transactions";
+        File userTransactions = new File(fileName);
+
+        Scanner scan = new Scanner(userTransactions);
+        if (scan.hasNextLine()){
+            scan.hasNextLine();
+        }
+        while(scan.hasNextLine()){
+            String line = scan.nextLine();
+            Transaction transaction = convertLineToTransaction(line);
+            if (transaction != null){
+                boolean t = addTransaction(Transaction transaction);
+            }
+        }
+        scan.close();
+    }
+
+    private Transaction convertLineToTransaction(String line){
+        if (line.trim().isEmpty()) {
+            return null;
+        }
+        String[] tokens = line.split(",");
+        if (tokens.length != 5){
+            return null;
+        }
+        String transactionID = tokens[0];
+        String transactionName = tokens[1];
+        String transactionType = tokens[2];
+        String transactionDate = tokens[3];
+        double transactionCost = Double.parseDouble(tokens[4]);
+        return new Transaction(transactionID, transactionName, transactionType, transactionDate, transactionCost);
     }
 
     @SuppressWarnings("unchecked")

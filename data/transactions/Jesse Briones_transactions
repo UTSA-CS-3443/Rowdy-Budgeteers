@@ -1,0 +1,4 @@
+transactionID, purchaseName, purchaseType, date, cost
+1001,McDonald's DeZavala,Food,10/01/2026,12.13
+1002,McDonald's DeZavala,Food,10/02/2026,5.06
+1003,HEB,Groceries,10/02/2026,53.06

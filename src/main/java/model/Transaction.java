@@ -8,11 +8,11 @@ public class Transaction implements Serializable {
     private String transactionID;
     private String purchaseName;
     private String purchaseType;
-    private LocalDate date;
+    private String date;
     private double cost;
 
     public Transaction(String transactionID, String purchaseName,
-                       String purchaseType, LocalDate date, double cost) {
+                       String purchaseType, String date, double cost) {
 
         this.transactionID = transactionID;
         this.purchaseName = purchaseName;
