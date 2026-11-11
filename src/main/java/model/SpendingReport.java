@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Locale;
+import java.time.format.DateTimeParseException;
 public class SpendingReport {
 
     // Attributes from UML
@@ -26,7 +27,12 @@ public class SpendingReport {
         }
 
         for (Transaction transaction : transactions) {
-            LocalDate transactionDate = transaction.getDate();
+            LocalDate transactionDate;
+            try {
+                transactionDate = LocalDate.parse(transaction.getDate());
+            } catch (DateTimeParseException e) {
+                continue;
+            }
             if (transactionDate != null
                     && !transactionDate.isBefore(startDate)
                     && !transactionDate.isAfter(endDate)) {
@@ -48,7 +54,12 @@ public class SpendingReport {
 
         for (Transaction transaction : transactions) {
 
-            LocalDate transactionDate = transaction.getDate();
+            LocalDate transactionDate;
+            try {
+                transactionDate = LocalDate.parse(transaction.getDate());
+            } catch (DateTimeParseException e) {
+                continue;
+            }
 
             if (transactionDate != null
                     && !transactionDate.isBefore(startDate)
@@ -73,7 +84,12 @@ public class SpendingReport {
         if (transactions != null) {
 
             for (Transaction transaction : transactions) {
-                LocalDate transactionDate = transaction.getDate();
+                LocalDate transactionDate;
+                try {
+                    transactionDate = LocalDate.parse(transaction.getDate());
+                } catch (DateTimeParseException e) {
+                    continue;
+                }
                 if (transactionDate != null
                         && !transactionDate.isBefore(startDate)
                         && !transactionDate.isAfter(endDate)

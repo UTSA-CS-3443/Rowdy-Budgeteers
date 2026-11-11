@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.nio.file.Files;
 
 public class DataManager {
 
@@ -138,7 +139,24 @@ public class DataManager {
     // LOAD METHOD
 
     public void loadUsers() {
-        users = loadList("users.dat");
+        users = new ArrayList<>();
+
+        try (Scanner scan = new Scanner(
+                new File(dataDirectory + "/users.csv"))) {
+
+            while (scan.hasNextLine()) {
+                String[] data = scan.nextLine().split(",");
+
+                if (data.length == 4) {
+                    users.add(new Person(
+                            data[0], data[1], data[2], data[3]
+                    ));
+                }
+            }
+
+        } catch (FileNotFoundException e) {
+            System.out.println("Users file not found.");
+        }
     }
 
     public void loadBudgets() {
@@ -174,7 +192,12 @@ public class DataManager {
         String transactionName = tokens[1];
         String transactionType = tokens[2];
         String transactionDate = tokens[3];
-        double transactionCost = Double.parseDouble(tokens[4]);
+        double transactionCost;
+        try {
+            transactionCost = Double.parseDouble(tokens[4].trim());
+        } catch (NumberFormatException e) {
+            return null;
+        }
         return new Transaction(transactionID, transactionName, transactionType, transactionDate, transactionCost);
     }
 

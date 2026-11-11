@@ -50,6 +50,6 @@ public class Person{
         this.password = password;
     }
     public boolean authenticate(String password) {
-        return this.password.equals(password);
+        return this.password != null && this.password.equals(password);
     }
 }

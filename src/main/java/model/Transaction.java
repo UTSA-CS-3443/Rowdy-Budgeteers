@@ -40,7 +40,7 @@ public class Transaction {
         return purchaseType;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 

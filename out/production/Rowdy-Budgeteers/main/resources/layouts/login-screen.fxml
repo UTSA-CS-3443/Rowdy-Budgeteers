@@ -10,7 +10,8 @@
 <?import javafx.scene.paint.Color?>
 
 <BorderPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml">
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="main.java.view.LoginController">
 
     <top>
         <StackPane prefHeight="240">
@@ -26,8 +27,7 @@
                      StackPane.alignment="TOP_RIGHT"/>
 
             <!-- Application Name and Logo -->
-            <VBox alignment="CENTER"
-                  spacing="5">
+            <VBox alignment="CENTER" spacing="5">
 
                 <Label text="ROWDY BUDGETEERS">
                     <font>
@@ -58,7 +58,8 @@
               maxWidth="340">
 
             <padding>
-                <Insets top="30" right="30" bottom="30" left="30"/>
+                <Insets top="30" right="30"
+                        bottom="30" left="30"/>
             </padding>
 
             <Label text="LOGIN">
@@ -70,22 +71,30 @@
                 </textFill>
             </Label>
 
-            <TextField promptText="Username"
+            <!-- Username -->
+            <TextField fx:id="usernameField"
+                       promptText="Username"
                        prefHeight="42"/>
 
-            <PasswordField promptText="Password"
+            <!-- Password -->
+            <PasswordField fx:id="passwordField"
+                           promptText="Password"
                            prefHeight="42"/>
 
-            <Label text="Enter your credentials to continue"
+            <!-- Login Message -->
+            <Label fx:id="messageLabel"
+                   text="Enter your credentials to continue"
                    wrapText="true">
                 <textFill>
                     <Color red="0.4" green="0.4" blue="0.4"/>
                 </textFill>
             </Label>
 
+            <!-- Login Button -->
             <Button text="Enter"
                     prefWidth="200"
-                    prefHeight="42"/>
+                    prefHeight="42"
+                    onAction="#handleLogin"/>
 
         </VBox>
     </center>
