@@ -11,7 +11,7 @@ public class ScreenPreviewTester extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        String screen = "/layouts/transaction-screen.fxml";
+        String screen = "/layouts/login-screen.fxml";
 
         var resource = getClass().getResource(screen);
 

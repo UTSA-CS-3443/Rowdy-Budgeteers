@@ -1,4 +1,7 @@
-package main.java.model;
+package main.java.view;
+
+import main.java.model.DataManager;
+import main.java.model.Person;
 
 public class LoginController {
 
