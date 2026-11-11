@@ -10,8 +10,7 @@
 <?import javafx.scene.paint.Color?>
 
 <BorderPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="main.java.view.LoginController">
+            xmlns:fx="http://javafx.com/fxml">
 
     <top>
         <StackPane prefHeight="240">
