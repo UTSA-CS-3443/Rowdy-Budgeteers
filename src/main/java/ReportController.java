@@ -34,12 +34,26 @@ public class ReportController {
     }
 
     // UML: generateReport(startDate, endDate): SpendingReport
-    public SpendingReport generateReport(LocalDate startDate, LocalDate endDate) {
+    public SpendingReport generateReport(
+            LocalDate startDate, LocalDate endDate) {
 
         if (dataManager == null || startDate == null || endDate == null
                 || endDate.isBefore(startDate)) {
             return null;
         }
+
+        this.startDate = startDate;
+        this.endDate = endDate;
+
+        spendingReport = new SpendingReport(startDate, endDate);
+
+        // Calculate total spending
+        spendingReport.calculateTotal(dataManager.getTransactions());
+
+        // Display the report
+        displayChart(spendingReport);
+
+        return spendingReport;
 
         this.startDate = startDate;
         this.endDate = endDate;
@@ -51,7 +65,7 @@ public class ReportController {
         spendingReport.setTransactions(dataManager.getTransactions());
 
         // Calculate the report information
-        spendingReport.generateMonthlyBudgetReport();
+        generateMonthlyBudgetReport(Budget budget, List<Transaction> transactions)
 
         // Display the report
         displayChart(spendingReport);
@@ -73,7 +87,7 @@ public class ReportController {
         XYChart.Series<String, Number> series = new XYChart.Series<>();
 
         // Get spending information by category
-        Map<String, Double> spendingData = report.spendingByCategory();
+        Map<String, Double> spendingData = report.spendingByCategory(dataManager.getTransactions());
 
         // Add each category and its spending to the chart
         for (Map.Entry<String, Double> entry : spendingData.entrySet()) {

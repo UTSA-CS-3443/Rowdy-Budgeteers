@@ -24,15 +24,12 @@ public class SpendingReport {
     public double calculateTotal(List<Transaction> transactions) {
 
         totalSpending = 0.0;
-
         if (transactions == null) {
             return totalSpending;
         }
 
         for (Transaction transaction : transactions) {
-
             LocalDate transactionDate = transaction.getDate();
-
             if (transactionDate != null
                     && !transactionDate.isBefore(startDate)
                     && !transactionDate.isAfter(endDate)) {
@@ -40,10 +37,8 @@ public class SpendingReport {
                 totalSpending += transaction.getCost();
             }
         }
-
         return totalSpending;
     }
-
     // Group spending by transaction category
     public Map<String, Double> spendingByCategory(
             List<Transaction> transactions) {
@@ -63,41 +58,30 @@ public class SpendingReport {
                     && !transactionDate.isAfter(endDate)) {
 
                 String category = transaction.getPurchaseType();
-
                 double cost = transaction.getCost();
-
-                spending.put(
-                        category,
-                        spending.getOrDefault(category, 0.0) + cost
-                );
+                spending.put(category, spending.getOrDefault(category, 0.0) + cost);
             }
         }
-
         return spending;
     }
 
     // Generate a report for a specific budget
     public String generateMonthlyBudgetReport(
             Budget budget, List<Transaction> transactions) {
-
         if (budget == null) {
             return "Unable to generate report: Budget not found.";
         }
-
         double budgetSpending = 0.0;
 
         if (transactions != null) {
 
             for (Transaction transaction : transactions) {
-
                 LocalDate transactionDate = transaction.getDate();
-
                 if (transactionDate != null
                         && !transactionDate.isBefore(startDate)
                         && !transactionDate.isAfter(endDate)
                         && transaction.getPurchaseType()
                         .equalsIgnoreCase(budget.getBudgetType())) {
-
                     budgetSpending += transaction.getCost();
                 }
             }
