@@ -37,23 +37,18 @@ public class Budget implements Serializable {
     public String getBudgetID() {
         return budgetID;
     }
-
     public String getBudgetType() {
         return budgetType;
     }
-
     public double getBudgetLimit() {
         return budgetLimit;
     }
-
     public LocalDate getStartDate() {
         return startDate;
     }
-
     public LocalDate getEndDate() {
         return endDate;
     }
-
     public void setBudgetLimit(double budgetLimit) {
         this.budgetLimit = budgetLimit;
     }

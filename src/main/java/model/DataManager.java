@@ -197,4 +197,7 @@ public class DataManager {
             return new ArrayList<>();
         }
     }
+    public List<Transaction> getTransactions() {
+        return transactions;
+    }
 }
