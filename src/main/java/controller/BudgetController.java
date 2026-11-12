@@ -135,14 +135,11 @@ public class BudgetController {
 
     // Reloads the table using the current budget list.
     private void refreshBudgets() {
-        List<Budget> budgetList =
-                new ArrayList<>(dataManager.getBudgets());
+        List<Budget> budgetList = new ArrayList<>(dataManager.getBudgets());
 
-        budgetList.sort(
-                Comparator.comparing(Budget::getBudgetType));
+        budgetList.sort(Comparator.comparing(Budget::getBudgetType));
 
-        budgetsTable.setItems(
-                FXCollections.observableArrayList(budgetList));
+        budgetsTable.setItems(FXCollections.observableArrayList(budgetList));
     }
 
     @FXML

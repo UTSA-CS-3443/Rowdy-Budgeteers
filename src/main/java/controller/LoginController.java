@@ -37,12 +37,9 @@ public class LoginController {
 
         } catch (FileNotFoundException e) {
 
-            throw new RuntimeException(
-                    "Unable to load application data.", e);
+            throw new RuntimeException("Unable to load application data.", e);
         }
     }
-
-
     // LOGIN BUTTON
 
     @FXML
@@ -59,7 +56,6 @@ public class LoginController {
 
             return;
         }
-
         // Attempt login
         if (login(username, password)) {
 
