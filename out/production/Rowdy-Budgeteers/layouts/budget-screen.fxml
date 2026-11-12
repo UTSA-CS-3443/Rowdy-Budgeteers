@@ -53,10 +53,9 @@
                 <!-- Navigation Buttons -->
                 <Button text="Dashboard"
                         onAction="#showDashboard"
-                        style="-fx-background-color: #12304F;
-                               -fx-text-fill: white;
+                        style="-fx-background-color: transparent;
+                               -fx-text-fill: #12304F;
                                -fx-font-weight: bold;
-                               -fx-background-radius: 5;
                                -fx-padding: 9 16;"/>
 
                 <Button text="Transactions"
@@ -67,9 +66,10 @@
                                -fx-padding: 9 16;"/>
 
                 <Button text="Budgets"
-                        style="-fx-background-color: transparent;
-                               -fx-text-fill: #12304F;
+                        style="-fx-background-color: #12304F;
+                               -fx-text-fill: white;
                                -fx-font-weight: bold;
+                               -fx-background-radius: 5;
                                -fx-padding: 9 16;"/>
 
                 <Button text="Reports"
