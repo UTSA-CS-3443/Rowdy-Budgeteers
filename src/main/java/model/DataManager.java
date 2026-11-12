@@ -19,17 +19,15 @@ public class DataManager {
         budgets = new ArrayList<>();
         transactions = new ArrayList<>();
 
-        dataDirectory = "data"; // checks to make sure the program can see the data folder
+        dataDirectory = "data";
+
         File directory = new File(dataDirectory);
+
         if (!directory.exists()) {
             directory.mkdir();
         }
-
-        String currentUserLogged = "Jesse Briones";
         loadUsers();
         loadBudgets();
-        String transactionFileName = "data/transactions/" + currentUserLogged + "_transactions";
-        loadTransactions(transactionFileName);
     }
 
     // CREATE SUPPORT
@@ -221,5 +219,13 @@ public class DataManager {
     }
     public List<Transaction> getTransactions() {
         return transactions;
+    }
+
+    public List<Budget> getBudgets() {
+        return budgets;
+    }
+
+    public List<Person> getUsers() {
+        return users;
     }
 }

@@ -10,7 +10,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="main.java.view.MainScreenController"
+            fx:controller="main.java.controller.MainScreenController"
             style="-fx-background-color: #F7F8FA;">
 
     <!-- TOP NAVIGATION BAR -->

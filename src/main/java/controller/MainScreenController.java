@@ -1,24 +1,32 @@
 package main.java.controller;
 
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
-import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.control.TableView;
+import javafx.beans.property.ReadOnlyStringWrapper;
 
 import main.java.BankingApplication;
 import main.java.model.DataManager;
 import main.java.model.Person;
 import main.java.model.Transaction;
+import main.java.model.Budget;
+import main.java.model.SpendingReport;
 
 import java.time.LocalDate;
-import java.time.YearMonth;
-import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Locale;
+
 
 public class MainScreenController {
 
+    // Shared application data
     private DataManager dataManager;
     private Person currentPerson;
+
 
     // FXML COMPONENTS
 
@@ -65,162 +73,184 @@ public class MainScreenController {
     @FXML
     public void initialize() {
 
-        // Display user's name
-        if (currentPerson != null) {
-            welcomeLabel.setText(
-                    "Welcome Back, " + currentPerson.getName() + "!"
-            );
-        }
+        // Display the logged-in user's name
+        welcomeLabel.setText(
+                "Welcome Back, " + currentPerson.getName() + "!"
+        );
 
-        // Configure transaction table
-        setupTransactionTable();
+        // Update the financial summary cards
+        updateFinancialSummary();
 
-        // Update financial information
-        updateDashboard();
+        // Populate the recent transactions table
+        loadRecentTransactions();
     }
 
 
-    // SETUP TRANSACTION TABLE
+    // FINANCIAL SUMMARY
 
-    private void setupTransactionTable() {
+    private void updateFinancialSummary() {
 
-        dateColumn.setCellValueFactory(
-                cell -> new SimpleStringProperty(
-                        cell.getValue().getDate()
-                )
+        // Account balance is not currently available in the model
+        totalBalanceLabel.setText("N/A");
+
+        // Calculate spending for the current month
+        LocalDate today = LocalDate.now();
+
+        LocalDate startOfMonth = today.withDayOfMonth(1);
+
+        SpendingReport report = new SpendingReport(
+                startOfMonth, today
         );
 
-        categoryColumn.setCellValueFactory(
-                cell -> new SimpleStringProperty(
-                        cell.getValue().getPurchaseType()
-                )
-        );
-
-        amountColumn.setCellValueFactory(
-                cell -> new SimpleStringProperty(
-                        String.format("$%.2f",
-                                cell.getValue().getCost())
-                )
-        );
-
-        descriptionColumn.setCellValueFactory(
-                cell -> new SimpleStringProperty(
-                        cell.getValue().getPurchaseName()
-                )
-        );
-
-    }
-
-
-    // UPDATE DASHBOARD
-
-    private void updateDashboard() {
-
-        if (dataManager == null) {
-            return;
-        }
-
-        // Display available financial information
-        totalBalanceLabel.setText("Not available");
-
-        activeBudgetsLabel.setText("Not available");
-
-        // Calculate monthly spending
-        double monthlySpending = calculateMonthlySpending();
-
-        monthlySpendingLabel.setText(
-                String.format("$%.2f", monthlySpending)
-        );
-
-        // Populate recent transactions
-        transactionsTable.getItems().setAll(
+        double monthlySpending = report.calculateTotal(
                 dataManager.getTransactions()
         );
-    }
 
+        monthlySpendingLabel.setText(
+                String.format(Locale.US, "$%,.2f", monthlySpending)
+        );
 
-    // CALCULATE MONTHLY SPENDING
+        // Count budgets that are currently active
+        int activeBudgets = 0;
 
-    private double calculateMonthlySpending() {
-        double total = 0.0;
-        if (dataManager.getTransactions() == null) {
-            return total;
-        }
-        YearMonth currentMonth = YearMonth.now();
-        for (Transaction transaction :
-                dataManager.getTransactions()) {
+        for (Budget budget : dataManager.getBudgets()) {
 
-            try {
+            if (!today.isBefore(budget.getStartDate())
+                    && !today.isAfter(budget.getEndDate())) {
 
-                LocalDate transactionDate =
-                        LocalDate.parse(transaction.getDate());
-
-                if (YearMonth.from(transactionDate)
-                        .equals(currentMonth)) {
-
-                    total += transaction.getCost();
-                }
-            } catch (DateTimeParseException e) {
-                // Ignore transactions with invalid date formats
-                continue;
+                activeBudgets++;
             }
         }
-        return total;
+
+        activeBudgetsLabel.setText(
+                String.valueOf(activeBudgets)
+        );
     }
-    // NAVIGATION BUTTONS
+
+
+    // RECENT TRANSACTIONS TABLE
+
+    private void loadRecentTransactions() {
+
+        // Connect transaction information to the table columns
+        dateColumn.setCellValueFactory(cellData ->
+                new ReadOnlyStringWrapper(
+                        cellData.getValue().getDate()
+                )
+        );
+
+        categoryColumn.setCellValueFactory(cellData ->
+                new ReadOnlyStringWrapper(
+                        cellData.getValue().getPurchaseType()
+                )
+        );
+
+        amountColumn.setCellValueFactory(cellData ->
+                new ReadOnlyStringWrapper(
+                        String.format(
+                                Locale.US,
+                                "$%,.2f",
+                                cellData.getValue().getCost()
+                        )
+                )
+        );
+
+        descriptionColumn.setCellValueFactory(cellData ->
+                new ReadOnlyStringWrapper(
+                        cellData.getValue().getPurchaseName()
+                )
+        );
+
+        // Get a copy of the transactions
+        List<Transaction> recentTransactions = new ArrayList<>(
+                dataManager.getTransactions()
+        );
+
+        // Sort transactions by date, newest first
+        recentTransactions.sort(
+                Comparator.comparing(Transaction::getDate).reversed()
+        );
+
+        // Display up to five recent transactions
+        if (recentTransactions.size() > 5) {
+
+            recentTransactions = recentTransactions.subList(0, 5);
+        }
+
+        transactionsTable.setItems(
+                FXCollections.observableArrayList(recentTransactions)
+        );
+    }
+
+
+    // SCREEN NAVIGATION
 
     @FXML
     private void showDashboard() {
-        updateDashboard();
+
+        // Refresh the dashboard information
+        updateFinancialSummary();
+        loadRecentTransactions();
     }
+
 
     @FXML
     private void showTransactions() {
-        try {
-            BankingApplication.changeScene("transaction-screen.fxml");
-        } catch (Exception e) {
 
-            e.printStackTrace();
-        }
+        changeScreen("transaction-screen.fxml");
     }
 
-    @FXML
-    private void showBudgets(){
-        try {
-            BankingApplication.changeScene("budget-screen.fxml");
-        } catch (Exception e) {
 
-            e.printStackTrace();
-        }
+    @FXML
+    private void showBudgets() {
+
+        changeScreen("budget-screen.fxml");
     }
 
 
     @FXML
     private void showReports() {
-        try {
-            BankingApplication.changeScene("report-screen.fxml");
-        } catch (Exception e) {
 
-            e.printStackTrace();
-        }
+        changeScreen("report-screen.fxml");
     }
+
+
     // LOGOUT
 
     @FXML
     private void handleLogout() {
+
         try {
-            BankingApplication.changeScene("login-screen.fxml");
+
+            BankingApplication.changeScene(
+                    "login-screen.fxml",
+                    dataManager,
+                    null
+            );
+
         } catch (Exception e) {
 
             e.printStackTrace();
         }
     }
 
-    // GET CURRENT PERSON
 
-    public Person getCurrentPerson() {
+    // HELPER METHOD FOR SCREEN SWITCHING
 
-        return currentPerson;
+    private void changeScreen(String fxmlFile) {
+
+        try {
+
+            BankingApplication.changeScene(
+                    fxmlFile,
+                    dataManager,
+                    currentPerson
+            );
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
     }
 
 }

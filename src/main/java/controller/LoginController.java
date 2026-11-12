@@ -63,6 +63,16 @@ public class LoginController {
         // Attempt login
         if (login(username, password)) {
 
+            try {
+                String transactionFileName = "data/transactions/"
+                        + currentPerson.getName() + "_transactions";
+
+                dataManager.loadTransactions(transactionFileName);
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
             messageLabel.setText("Login successful!");
 
             System.out.println(

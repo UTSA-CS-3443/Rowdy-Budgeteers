@@ -1,7 +1,8 @@
 package main.java.model;
 
+import java.io.Serializable;
 
-public class Transaction {
+public class Transaction implements Serializable {
 
     private String transactionID;
     private String purchaseName;
