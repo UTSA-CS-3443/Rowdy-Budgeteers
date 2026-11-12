@@ -1,2 +1,2 @@
 // from Jordan: Ill work on this
-package main.java.view;
+package main.java.controller;

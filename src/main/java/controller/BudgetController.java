@@ -1,5 +1,5 @@
 // from Jordan: Ill work on this
-package main.java.view;
+package main.java.controller;
 
 import main.java.model.Budget;
 import main.java.model.DataManager;

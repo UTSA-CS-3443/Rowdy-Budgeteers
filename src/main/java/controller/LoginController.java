@@ -1,4 +1,4 @@
-package main.java.view;
+package main.java.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;

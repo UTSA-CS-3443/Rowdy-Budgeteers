@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import main.java.model.DataManager;
 import main.java.model.Person;
-import main.java.view.MainScreenController;
+import main.java.controller.MainScreenController;
 
 public class BankingApplication extends Application {
 
