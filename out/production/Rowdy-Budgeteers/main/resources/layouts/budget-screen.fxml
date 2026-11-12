@@ -7,10 +7,10 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.paint.Color?>
 
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
+            fx:controller="main.java.controller.BudgetController"
             style="-fx-background-color: #F7F8FA;">
 
     <!-- TOP NAVIGATION -->
@@ -18,19 +18,15 @@
         <StackPane prefHeight="100"
                    style="-fx-background-color: white;">
 
-            <!-- Navy Corner -->
             <Polygon points="0,0, 180,0, 0,100"
                      fill="#12304F"
                      StackPane.alignment="TOP_LEFT"/>
 
-            <!-- Orange Corner -->
             <Polygon points="180,0, 340,0, 340,100"
                      fill="#C44D08"
                      StackPane.alignment="TOP_RIGHT"/>
 
-            <HBox alignment="CENTER_LEFT"
-                  spacing="12">
-
+            <HBox alignment="CENTER_LEFT" spacing="12">
                 <padding>
                     <Insets left="35" right="35"/>
                 </padding>
@@ -56,6 +52,7 @@
 
                 <!-- Navigation Buttons -->
                 <Button text="Dashboard"
+                        onAction="#showDashboard"
                         style="-fx-background-color: #12304F;
                                -fx-text-fill: white;
                                -fx-font-weight: bold;
@@ -63,6 +60,7 @@
                                -fx-padding: 9 16;"/>
 
                 <Button text="Transactions"
+                        onAction="#showTransactions"
                         style="-fx-background-color: transparent;
                                -fx-text-fill: #12304F;
                                -fx-font-weight: bold;
@@ -75,12 +73,14 @@
                                -fx-padding: 9 16;"/>
 
                 <Button text="Reports"
+                        onAction="#showReports"
                         style="-fx-background-color: transparent;
                                -fx-text-fill: #12304F;
                                -fx-font-weight: bold;
                                -fx-padding: 9 16;"/>
 
                 <Button text="Logout"
+                        onAction="#handleLogout"
                         style="-fx-background-color: #C44D08;
                                -fx-text-fill: white;
                                -fx-font-weight: bold;
@@ -94,7 +94,6 @@
     <!-- MAIN CONTENT -->
     <center>
         <VBox spacing="20">
-
             <padding>
                 <Insets top="35"
                         right="40"
@@ -132,18 +131,28 @@
                     </font>
                 </Label>
 
-                <HBox spacing="12"
-                      alignment="CENTER_LEFT">
+                <HBox spacing="12" alignment="CENTER_LEFT">
 
-                    <ComboBox promptText="Select budget category"
-                              prefWidth="210"
+                    <ComboBox fx:id="categoryComboBox"
+                              promptText="Select budget category"
+                              prefWidth="190"
                               prefHeight="40"/>
 
-                    <TextField promptText="Budget amount"
-                               prefWidth="180"
+                    <TextField fx:id="budgetAmountField"
+                               promptText="Budget amount"
+                               prefWidth="150"
                                prefHeight="40"/>
 
+                    <DatePicker fx:id="startDatePicker"
+                                promptText="Start date"
+                                prefHeight="40"/>
+
+                    <DatePicker fx:id="endDatePicker"
+                                promptText="End date"
+                                prefHeight="40"/>
+
                     <Button text="Add Budget"
+                            onAction="#handleAddBudget"
                             prefHeight="40"
                             style="-fx-background-color: #C44D08;
                                    -fx-text-fill: white;
@@ -152,6 +161,11 @@
                                    -fx-padding: 0 20;"/>
 
                 </HBox>
+
+                <Label fx:id="messageLabel"
+                       textFill="#C44D08"
+                       wrapText="true"/>
+
             </VBox>
 
             <!-- BUDGET TABLE SECTION -->
@@ -169,15 +183,33 @@
                     </font>
                 </Label>
 
-                <TableView prefHeight="300">
+                <TableView fx:id="budgetsTable"
+                           prefHeight="300">
 
                     <columns>
-                        <TableColumn text="Budget ID" prefWidth="110"/>
-                        <TableColumn text="Category" prefWidth="170"/>
-                        <TableColumn text="Budget Limit" prefWidth="150"/>
-                        <TableColumn text="Amount Spent" prefWidth="150"/>
-                        <TableColumn text="Remaining" prefWidth="150"/>
-                        <TableColumn text="Status" prefWidth="120"/>
+                        <TableColumn fx:id="budgetIDColumn"
+                                     text="Budget ID"
+                                     prefWidth="110"/>
+
+                        <TableColumn fx:id="categoryColumn"
+                                     text="Category"
+                                     prefWidth="170"/>
+
+                        <TableColumn fx:id="budgetLimitColumn"
+                                     text="Budget Limit"
+                                     prefWidth="150"/>
+
+                        <TableColumn fx:id="amountSpentColumn"
+                                     text="Amount Spent"
+                                     prefWidth="150"/>
+
+                        <TableColumn fx:id="remainingColumn"
+                                     text="Remaining"
+                                     prefWidth="150"/>
+
+                        <TableColumn fx:id="statusColumn"
+                                     text="Status"
+                                     prefWidth="120"/>
                     </columns>
 
                     <placeholder>
@@ -191,6 +223,7 @@
                 <HBox spacing="12">
 
                     <Button text="Update Selected"
+                            onAction="#handleUpdateBudget"
                             style="-fx-background-color: #12304F;
                                    -fx-text-fill: white;
                                    -fx-font-weight: bold;
@@ -198,6 +231,7 @@
                                    -fx-padding: 9 16;"/>
 
                     <Button text="Delete Selected"
+                            onAction="#handleDeleteBudget"
                             style="-fx-background-color: #C44D08;
                                    -fx-text-fill: white;
                                    -fx-font-weight: bold;
@@ -205,6 +239,7 @@
                                    -fx-padding: 9 16;"/>
 
                     <Button text="Refresh"
+                            onAction="#handleRefresh"
                             style="-fx-background-color: #E8EDF2;
                                    -fx-text-fill: #12304F;
                                    -fx-font-weight: bold;

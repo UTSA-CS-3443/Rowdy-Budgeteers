@@ -8,6 +8,8 @@ import javafx.stage.Stage;
 import main.java.model.DataManager;
 import main.java.model.Person;
 import main.java.controller.MainScreenController;
+import main.java.controller.TransactionController;
+import main.java.controller.BudgetController;
 
 public class BankingApplication extends Application {
 
@@ -51,6 +53,14 @@ public class BankingApplication extends Application {
 
             if (controllerClass == MainScreenController.class) {
                 return new MainScreenController(dataManager, currentPerson);
+            }
+
+            if (controllerClass == TransactionController.class) {
+                return new TransactionController(dataManager, currentPerson);
+            }
+
+            if (controllerClass == BudgetController.class) {
+                return new BudgetController(dataManager, currentPerson);
             }
 
             try {
