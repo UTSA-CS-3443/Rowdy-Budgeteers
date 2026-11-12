@@ -143,15 +143,11 @@ public class MainScreenController {
     // CALCULATE MONTHLY SPENDING
 
     private double calculateMonthlySpending() {
-
         double total = 0.0;
-
         if (dataManager.getTransactions() == null) {
             return total;
         }
-
         YearMonth currentMonth = YearMonth.now();
-
         for (Transaction transaction :
                 dataManager.getTransactions()) {
 
@@ -165,52 +161,34 @@ public class MainScreenController {
 
                     total += transaction.getCost();
                 }
-
             } catch (DateTimeParseException e) {
-
                 // Ignore transactions with invalid date formats
                 continue;
             }
         }
-
         return total;
     }
-
-
     // NAVIGATION BUTTONS
 
     @FXML
     private void showDashboard() {
-
         updateDashboard();
     }
 
-
     @FXML
     private void showTransactions() {
-
         try {
-
-            BankingApplication.changeScene(
-                    "transaction-screen.fxml"
-            );
-
+            BankingApplication.changeScene("transaction-screen.fxml");
         } catch (Exception e) {
 
             e.printStackTrace();
         }
     }
 
-
     @FXML
-    private void showBudgets() {
-
+    private void showBudgets(){
         try {
-
-            BankingApplication.changeScene(
-                    "budget-screen.fxml"
-            );
-
+            BankingApplication.changeScene("budget-screen.fxml");
         } catch (Exception e) {
 
             e.printStackTrace();
@@ -220,37 +198,24 @@ public class MainScreenController {
 
     @FXML
     private void showReports() {
-
         try {
-
-            BankingApplication.changeScene(
-                    "report-screen.fxml"
-            );
-
+            BankingApplication.changeScene("report-screen.fxml");
         } catch (Exception e) {
 
             e.printStackTrace();
         }
     }
-
-
     // LOGOUT
 
     @FXML
     private void handleLogout() {
-
         try {
-
-            BankingApplication.changeScene(
-                    "login-screen.fxml"
-            );
-
+            BankingApplication.changeScene("login-screen.fxml");
         } catch (Exception e) {
 
             e.printStackTrace();
         }
     }
-
 
     // GET CURRENT PERSON
 
