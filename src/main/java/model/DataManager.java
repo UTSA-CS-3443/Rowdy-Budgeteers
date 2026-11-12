@@ -109,6 +109,26 @@ public class DataManager {
         return null;
     }
 
+    public boolean deleteTransaction(String transactionID) {
+
+        if (transactionID == null || transactionID.isEmpty()) {
+            return false;
+        }
+
+        for (int i = 0; i < transactions.size(); i++) {
+
+            if (transactions.get(i).getTransactionID().equals(transactionID)) {
+
+                transactions.remove(i);
+                saveTransactions();
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     // SAVE METHODS
 
     public void saveUsers() {
