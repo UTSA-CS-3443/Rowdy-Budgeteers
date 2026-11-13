@@ -29,7 +29,9 @@ public class DataManager {
         new File(dataDirectory + "/transactions").mkdirs();
     }
 
-
+    public void setLoggedInUser(String loggedInUser) {
+        this.loggedInUser = loggedInUser;
+    }
 
 
     //USER METHODS COMPLETE
@@ -69,17 +71,18 @@ public class DataManager {
         }
         return false;
     }
-    public void loadUsers(String fileName) throws FileNotFoundException{
+    public void loadUsers(String fileName) throws FileNotFoundException {
+        users.clear();
         File user = new File(fileName);
         Scanner scan = new Scanner(user);
-        if (scan.hasNextLine()){
-            scan.hasNextLine();
+        if (scan.hasNextLine()) {
+            scan.nextLine(); // Skip the header/blank first line
         }
-        while(scan.hasNextLine()){
+        while (scan.hasNextLine()) {
             String line = scan.nextLine();
             Person person = convertLineToUser(line);
-            if (person != null){
-                boolean t = addPerson(person);
+            if (person != null) {
+                users.add(person);
             }
         }
         scan.close();
@@ -152,17 +155,18 @@ public class DataManager {
         }
         return false;
     }
-    public void loadBudgets(String fileName) throws FileNotFoundException{
+    public void loadBudgets(String fileName) throws FileNotFoundException {
+        budgets.clear();
         File userBudget = new File(fileName);
         Scanner scan = new Scanner(userBudget);
-        if (scan.hasNextLine()){
-            scan.hasNextLine();
+        if (scan.hasNextLine()) {
+            scan.nextLine(); // Skip the header/blank first line
         }
-        while(scan.hasNextLine()){
+        while (scan.hasNextLine()) {
             String line = scan.nextLine();
             Budget budget = convertLineToBudget(line);
-            if (budget != null){
-                boolean t = addBudget(budget);
+            if (budget != null) {
+                budgets.add(budget);
             }
         }
         scan.close();
@@ -244,21 +248,22 @@ public class DataManager {
         return false;
     }
     public void loadTransactions(String fileName) throws FileNotFoundException {
+        transactions.clear();
         File userTransactions = new File(fileName);
-
         Scanner scan = new Scanner(userTransactions);
-        if (scan.hasNextLine()){
-            scan.hasNextLine();
+        if (scan.hasNextLine()) {
+            scan.nextLine();
         }
-        while(scan.hasNextLine()){
+        while (scan.hasNextLine()) {
             String line = scan.nextLine();
             Transaction transaction = convertLineToTransaction(line);
-            if (transaction != null){
-                boolean t = addTransaction(transaction);
+            if (transaction != null) {
+                transactions.add(transaction);
             }
         }
         scan.close();
     }
+
     private Transaction convertLineToTransaction(String line){
         if (line.trim().isEmpty()) {
             return null;

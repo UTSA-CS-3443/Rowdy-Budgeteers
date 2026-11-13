@@ -226,7 +226,7 @@ public class BudgetController {
         }
 
         selectedBudget.setBudgetLimit(newAmount);
-        dataManager.saveBudgets();
+        dataManager.updateBudget(selectedBudget);
 
         messageLabel.setText("Budget updated successfully!");
 
@@ -238,19 +238,18 @@ public class BudgetController {
     private void handleDeleteBudget() {
         Budget selectedBudget =
                 budgetsTable.getSelectionModel().getSelectedItem();
-
         if (selectedBudget == null) {
             messageLabel.setText("Please select a budget to delete.");
             return;
         }
-
-        dataManager.getBudgets().remove(selectedBudget);
-        dataManager.saveBudgets();
-
-        messageLabel.setText("Budget deleted successfully!");
-
-        refreshBudgets();
+        if (dataManager.deleteBudget(selectedBudget.getBudgetID())) {
+            messageLabel.setText("Budget deleted successfully!");
+            refreshBudgets();
+        } else {
+            messageLabel.setText("Unable to delete budget.");
+        }
     }
+
 
     @FXML
     private void handleRefresh() {

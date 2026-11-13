@@ -9,6 +9,7 @@ import main.java.BankingApplication;
 import main.java.model.DataManager;
 import main.java.model.Person;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 
 public class LoginController {
@@ -31,15 +32,17 @@ public class LoginController {
     // CONSTRUCTOR
 
     public LoginController() {
-
-        try {
-            dataManager = new DataManager();
-
-        } catch (FileNotFoundException e) {
-
-            throw new RuntimeException("Unable to load application data.", e);
+            try {
+                dataManager = new DataManager();
+                File usersFile = new File("data/users.csv");
+                if (usersFile.exists()) {
+                    dataManager.loadUsers("data/users.csv");
+                }
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException("Unable to load application data.", e);
+            }
         }
-    }
+
     // LOGIN BUTTON
 
     @FXML
@@ -60,10 +63,15 @@ public class LoginController {
         if (login(username, password)) {
 
             try {
-                String transactionFileName = "data/transactions/"
-                        + currentPerson.getName() + "_transactions";
+                dataManager.setLoggedInUser(currentPerson.getUserName());
 
-                dataManager.loadTransactions(transactionFileName);
+                String transactionFileName = "data/transactions/"
+                        + currentPerson.getName() + "_transactions.csv";
+                File txFile = new File(transactionFileName);
+                if (txFile.exists()) {
+                    dataManager.loadTransactions(transactionFileName);
+                }
+
 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
