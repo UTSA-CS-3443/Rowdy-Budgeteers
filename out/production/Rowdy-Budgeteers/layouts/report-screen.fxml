@@ -10,6 +10,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
+            fx:controller="main.java.controller.ReportController"
             style="-fx-background-color: #F7F8FA;">
 
     <!-- TOP NAVIGATION BAR -->
@@ -55,18 +56,21 @@
 
                 <!-- Navigation Buttons -->
                 <Button text="Dashboard"
+                        onAction="#showDashboard"
                         style="-fx-background-color: transparent;
                                -fx-text-fill: #12304F;
                                -fx-font-weight: bold;
                                -fx-padding: 9 16;"/>
 
                 <Button text="Transactions"
+                        onAction="#showTransactions"
                         style="-fx-background-color: transparent;
                                -fx-text-fill: #12304F;
                                -fx-font-weight: bold;
                                -fx-padding: 9 16;"/>
 
                 <Button text="Budgets"
+                        onAction="#showBudgets"
                         style="-fx-background-color: transparent;
                                -fx-text-fill: #12304F;
                                -fx-font-weight: bold;
@@ -80,6 +84,7 @@
                                -fx-padding: 9 16;"/>
 
                 <Button text="Logout"
+                        onAction="#handleLogout"
                         style="-fx-background-color: #C44D08;
                                -fx-text-fill: white;
                                -fx-font-weight: bold;
@@ -136,9 +141,11 @@
                     </font>
                 </Label>
 
-                <ComboBox promptText="Select period"
+                <ComboBox fx:id="periodComboBox"
+                          promptText="Select period"
                           prefWidth="200"
-                          prefHeight="38"/>
+                          prefHeight="38"
+                          onAction="#handlePeriodChange"/>
 
             </HBox>
 
@@ -170,7 +177,8 @@
                             </font>
                         </Label>
 
-                        <Label text="\$6,250.00"
+                        <Label fx:id="totalIncomeLabel"
+                               text="Not tracked"
                                textFill="#12304F">
                             <font>
                                 <Font size="25" name="System Bold"/>
@@ -200,7 +208,8 @@
                             </font>
                         </Label>
 
-                        <Label text="\$1,250.00"
+                        <Label fx:id="totalExpensesLabel"
+                               text="\$0.00"
                                textFill="#C44D08">
                             <font>
                                 <Font size="25" name="System Bold"/>
@@ -230,7 +239,8 @@
                             </font>
                         </Label>
 
-                        <Label text="\$5,000.00"
+                        <Label fx:id="netSavingsLabel"
+                               text="Not tracked"
                                textFill="#12304F">
                             <font>
                                 <Font size="25" name="System Bold"/>
@@ -265,16 +275,20 @@
                 <Label text="See how much you spend in each category."
                        textFill="#666666"/>
 
-                <TableView prefHeight="300">
+                <TableView fx:id="spendingTable"
+                           prefHeight="300">
 
                     <columns>
-                        <TableColumn text="Category"
+                        <TableColumn fx:id="categoryColumn"
+                                     text="Category"
                                      prefWidth="220"/>
 
-                        <TableColumn text="Total Spent"
+                        <TableColumn fx:id="totalSpentColumn"
+                                     text="Total Spent"
                                      prefWidth="200"/>
 
-                        <TableColumn text="Percentage"
+                        <TableColumn fx:id="percentageColumn"
+                                     text="Percentage"
                                      prefWidth="180"/>
                     </columns>
 

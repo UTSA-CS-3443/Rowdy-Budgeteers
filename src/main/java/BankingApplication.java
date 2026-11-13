@@ -10,6 +10,7 @@ import main.java.model.Person;
 import main.java.controller.MainScreenController;
 import main.java.controller.TransactionController;
 import main.java.controller.BudgetController;
+import main.java.controller.ReportController;
 
 public class BankingApplication extends Application {
 
@@ -61,6 +62,10 @@ public class BankingApplication extends Application {
 
             if (controllerClass == BudgetController.class) {
                 return new BudgetController(dataManager, currentPerson);
+            }
+
+            if (controllerClass == ReportController.class) {
+                return new ReportController(dataManager, currentPerson);
             }
 
             try {
