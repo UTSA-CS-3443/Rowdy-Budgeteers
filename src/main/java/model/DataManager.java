@@ -22,15 +22,13 @@ public class DataManager {
         users = new ArrayList<>();
         budgets = new ArrayList<>();
         transactions = new ArrayList<>();
-
         dataDirectory = "data";
 
-        File directory = new File(dataDirectory);
-
-        if (!directory.exists()) {
-            directory.mkdir();
-        }
+        new File(dataDirectory).mkdirs();
+        new File(dataDirectory + "/budget").mkdirs();
+        new File(dataDirectory + "/transactions").mkdirs();
     }
+
 
 
 

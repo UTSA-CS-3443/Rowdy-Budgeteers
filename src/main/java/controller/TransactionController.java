@@ -313,7 +313,7 @@ public class TransactionController {
         selectedTransaction.updateTransaction(newAmount);
 
         // Save the updated information
-        dataManager.saveTransactions();
+        dataManager.updateTransactions(selectedTransaction);
 
         messageLabel.setText(
                 "Transaction updated successfully!"
@@ -334,30 +334,19 @@ public class TransactionController {
         Transaction selectedTransaction =
                 transactionsTable.getSelectionModel().getSelectedItem();
 
-        // Make sure a transaction is selected
         if (selectedTransaction == null) {
-
-            messageLabel.setText(
-                    "Please select a transaction to delete."
-            );
-
+            messageLabel.setText("Please select a transaction to delete.");
             return;
         }
 
-
-        // Remove the transaction
-        dataManager.getTransactions().remove(selectedTransaction);
-
-        // Save the updated list
-        dataManager.saveTransactions();
-
-        messageLabel.setText(
-                "Transaction deleted successfully!"
-        );
-
-        // Refresh the table
-        refreshTransactions();
+        if (dataManager.deleteTransaction(selectedTransaction.getTransactionID())) {
+            messageLabel.setText("Transaction deleted successfully!");
+            refreshTransactions();
+        } else {
+            messageLabel.setText("Unable to delete transaction.");
+        }
     }
+
 
 
     // CLEAR INPUT FIELDS
