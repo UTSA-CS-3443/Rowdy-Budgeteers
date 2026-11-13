@@ -116,10 +116,10 @@ public class BudgetController {
             }
 
             try {
-                LocalDate transactionDate =
-                        LocalDate.parse(transaction.getDate());
+                LocalDate transactionDate = transaction.getDate();
 
-                if (!transactionDate.isBefore(budget.getStartDate())
+                if (transactionDate != null
+                        && !transactionDate.isBefore(budget.getStartDate())
                         && !transactionDate.isAfter(budget.getEndDate())) {
 
                     totalSpent += transaction.getCost();

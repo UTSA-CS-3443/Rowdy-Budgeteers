@@ -133,11 +133,11 @@ public class MainScreenController {
     private void loadRecentTransactions() {
 
         // Connect transaction information to the table columns
-        dateColumn.setCellValueFactory(cellData ->
-                new ReadOnlyStringWrapper(
-                        cellData.getValue().getDate()
-                )
-        );
+        dateColumn.setCellValueFactory(cellData -> {
+            LocalDate date = cellData.getValue().getDate();
+            return new ReadOnlyStringWrapper(date != null ? date.toString() : "");
+        });
+
 
         categoryColumn.setCellValueFactory(cellData ->
                 new ReadOnlyStringWrapper(

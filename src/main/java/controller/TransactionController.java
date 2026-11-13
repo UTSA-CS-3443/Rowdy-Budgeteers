@@ -126,7 +126,7 @@ public class TransactionController {
 
         dateColumn.setCellValueFactory(cellData ->
                 new ReadOnlyStringWrapper(
-                        cellData.getValue().getDate()
+                        cellData.getValue().getDate().toString()
                 )
         );
 
@@ -229,7 +229,7 @@ public class TransactionController {
                 transactionID,
                 purchaseName,
                 category,
-                purchaseDate.toString(),
+                purchaseDate,
                 amount
         );
 

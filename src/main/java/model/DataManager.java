@@ -275,9 +275,10 @@ public class DataManager {
         String transactionID = tokens[0];
         String transactionName = tokens[1];
         String transactionType = tokens[2];
-        String transactionDate = tokens[3];
+        LocalDate transactionDate;
         double transactionCost;
         try {
+            transactionDate = LocalDate.parse(tokens[3].trim());
             transactionCost = Double.parseDouble(tokens[4].trim());
         } catch (NumberFormatException e) {
             return null;

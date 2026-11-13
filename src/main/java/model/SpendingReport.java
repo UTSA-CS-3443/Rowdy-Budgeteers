@@ -27,12 +27,8 @@ public class SpendingReport {
         }
 
         for (Transaction transaction : transactions) {
-            LocalDate transactionDate;
-            try {
-                transactionDate = LocalDate.parse(transaction.getDate());
-            } catch (DateTimeParseException e) {
-                continue;
-            }
+            LocalDate transactionDate = transaction.getDate();
+
             if (transactionDate != null
                     && !transactionDate.isBefore(startDate)
                     && !transactionDate.isAfter(endDate)) {
@@ -41,6 +37,7 @@ public class SpendingReport {
             }
         }
         return totalSpending;
+
     }
     // Group spending by transaction category
     public Map<String, Double> spendingByCategory(
@@ -53,13 +50,7 @@ public class SpendingReport {
         }
 
         for (Transaction transaction : transactions) {
-
-            LocalDate transactionDate;
-            try {
-                transactionDate = LocalDate.parse(transaction.getDate());
-            } catch (DateTimeParseException e) {
-                continue;
-            }
+            LocalDate transactionDate = transaction.getDate();
 
             if (transactionDate != null
                     && !transactionDate.isBefore(startDate)
@@ -71,6 +62,7 @@ public class SpendingReport {
             }
         }
         return spending;
+
     }
 
     // Generate a report for a specific budget
@@ -82,23 +74,20 @@ public class SpendingReport {
         double budgetSpending = 0.0;
 
         if (transactions != null) {
-
             for (Transaction transaction : transactions) {
-                LocalDate transactionDate;
-                try {
-                    transactionDate = LocalDate.parse(transaction.getDate());
-                } catch (DateTimeParseException e) {
-                    continue;
-                }
+                LocalDate transactionDate = transaction.getDate();
+
                 if (transactionDate != null
                         && !transactionDate.isBefore(startDate)
                         && !transactionDate.isAfter(endDate)
+                        && transaction.getPurchaseType() != null
                         && transaction.getPurchaseType()
                         .equalsIgnoreCase(budget.getBudgetType())) {
                     budgetSpending += transaction.getCost();
                 }
             }
         }
+
 
         double remaining = budget.getBudgetLimit() - budgetSpending;
 

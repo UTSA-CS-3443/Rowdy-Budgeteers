@@ -1,17 +1,18 @@
 package main.java.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 public class Transaction implements Serializable {
 
     private String transactionID;
     private String purchaseName;
     private String purchaseType;
-    private String date;
+    private LocalDate date;
     private double cost;
 
     public Transaction(String transactionID, String purchaseName,
-                       String purchaseType, String date, double cost) {
+                       String purchaseType, LocalDate date, double cost) {
 
         this.transactionID = transactionID;
         this.purchaseName = purchaseName;
@@ -41,7 +42,7 @@ public class Transaction implements Serializable {
         return purchaseType;
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
@@ -69,7 +70,7 @@ public class Transaction implements Serializable {
                 escapeCSV(transactionID),
                 escapeCSV(purchaseName),
                 escapeCSV(purchaseType),
-                escapeCSV(date),
+                String.valueOf(date),
                 String.valueOf(cost)
         );
     }
