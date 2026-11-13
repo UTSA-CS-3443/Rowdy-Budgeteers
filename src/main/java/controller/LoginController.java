@@ -65,11 +65,15 @@ public class LoginController {
             try {
                 dataManager.setLoggedInUser(currentPerson.getUserName());
 
-                String transactionFileName = "data/transactions/"
-                        + currentPerson.getUserName() + "_transactions.csv";
+                String transactionFileName = "data/transactions/" + currentPerson.getUserName() + "_transactions.csv";
+                String budgetFileName = "data/budget/" + currentPerson.getUserName() + "_budget.csv";
                 File txFile = new File(transactionFileName);
+                File bxFile = new File(budgetFileName);
                 if (txFile.exists()) {
                     dataManager.loadTransactions(transactionFileName);
+                }
+                if (bxFile.exists()){
+                    dataManager.loadBudgets(budgetFileName);
                 }
 
 

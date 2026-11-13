@@ -1,5 +1,230 @@
-
-1001,McDonald's DeZavala,Food,2026-10-01,12.13
-1002,McDonald's DeZavala,Food,2026-10-02,5.06
-1003,HEB,Groceries,2026-10-01,53.06
-137a547e-1b90-48fa-922e-0b5572e1fd8d,Whataburger,Food,2026-10-03,13.56
+(String transactionID, String purchaseName, String purchaseType, LocalDate date, double cost)
+1001,Panda Express,Food,2026-11-13,2.80
+1002,Grubhub Campus Dining,Food,2026-11-13,11.37
+1003,The District,Other,2026-11-11,3.25
+1004,HEB,Food,2026-11-12,224.63
+1005,Aramark UTSA,Food,2026-11-09,20.10
+1006,Whataburger,Food,2026-11-10,17.31
+1007,Taqueria Datapoint,Food,2026-11-10,14.02
+1008,SE40541,Other,2026-11-10,5.49
+1009,The District,Other,2026-11-09,3.25
+1010,Aramark UTSA,Food,2026-11-06,10.81
+1011,The District,Other,2026-11-06,3.25
+1012,Circle K,Transportation,2026-11-06,41.30
+1013,Best Buy,Shopping,2026-11-04,587.72
+1014,Aramark UTSA,Food,2026-11-02,10.81
+1015,QuikTrip,Transportation,2026-11-01,46.13
+1016,Ming's,Food,2026-11-02,12.17
+1017,P. Terry's,Food,2026-10-30,10.39
+1018,The District,Other,2026-10-30,3.25
+1019,P. Terry's,Food,2026-10-29,10.39
+1020,Whataburger,Food,2026-10-26,21.30
+1021,Rudy's BBQ,Food,2026-10-26,23.27
+1022,SE40541,Other,2026-10-23,15.00
+1023,CHRISTUS Children's,Healthcare,2026-10-26,6.00
+1024,Panda Express,Food,2026-10-22,14.17
+1025,H-E-B Gas,Transportation,2026-10-19,45.07
+1026,Luna Rosa,Food,2026-10-18,35.52
+1027,P. Terry's,Food,2026-10-16,11.58
+1028,The District,Other,2026-10-16,10.83
+1029,Aramark UTSA,Food,2026-10-16,10.81
+1030,7-Eleven,Transportation,2026-10-19,10.43
+1031,Whataburger,Food,2026-10-17,6.69
+1032,Family Dollar,Shopping,2026-10-16,2.70
+1033,Panera Bread,Food,2026-10-16,1.93
+1034,JCPenney,Shopping,2026-10-15,75.76
+1035,Aramark UTSA,Food,2026-10-14,1.89
+1036,Walmart,Shopping,2026-10-15,71.40
+1037,H-E-B Gas,Transportation,2026-10-13,44.26
+1038,Whataburger,Food,2026-10-11,13.95
+1039,Panda Express,Food,2026-10-08,14.17
+1040,Walgreens,Shopping,2026-09-28,30.18
+1041,Walgreens,Shopping,2026-09-28,6.80
+1042,Walgreens,Shopping,2026-09-28,1.00
+1043,UTSA,Other,2026-09-23,5.19
+1044,Panda Express,Food,2026-09-14,8.39
+1045,Hildebrand Grocery,Food,2026-09-12,40.00
+1046,7-Eleven,Transportation,2026-09-03,2.46
+1047,Aramark UTSA,Food,2026-09-02,14.05
+1048,VIA Metropolitan Transit,Transportation,2026-09-03,12.00
+1049,365 Vending,Food,2026-09-02,2.25
+1050,Aramark UTSA,Food,2026-08-31,7.57
+1051,Aramark UTSA,Food,2026-08-31,5.40
+1052,Six Flags Fiesta Texas,Entertainment,2026-08-28,113.67
+1053,Six Flags Fiesta Texas Food,Entertainment,2026-08-28,42.22
+1054,HEB,Transportation,2026-08-31,20.89
+1055,HEB,Transportation,2026-08-31,17.18
+1056,HEB,Transportation,2026-08-31,14.58
+1057,7-Eleven,Transportation,2026-08-31,4.00
+1058,CSC ServiceWorks,Utilities,2026-08-30,3.00
+1059,CSC ServiceWorks,Utilities,2026-08-30,3.00
+1060,Aramark POD,Food,2026-08-28,2.15
+1061,Panda Express,Food,2026-08-26,16.33
+1062,Grubhub Campus Dining,Food,2026-08-27,10.81
+1063,SE40541,Other,2026-08-24,2.05
+1064,7-Eleven,Transportation,2026-08-24,7.99
+1065,7-Eleven,Transportation,2026-08-21,40.00
+1066,Taco Bell,Food,2026-08-20,16.31
+1067,La Michoacana,Food,2026-08-20,14.83
+1068,Regal Cinemas,Entertainment,2026-08-20,17.31
+1069,Corner Bakery,Food,2026-08-20,15.10
+1070,McDonald's,Food,2026-08-19,9.72
+1071,Whataburger,Food,2026-08-17,41.85
+1072,SE40541,Other,2026-08-17,8.08
+1073,Hildebrand Grocery,Food,2026-08-17,40.00
+1074,McDonald's,Food,2026-08-15,6.92
+1075,H-E-B #556,Transportation,2026-08-15,17.59
+1076,7-Eleven,Transportation,2026-08-15,7.84
+1077,Chipotle,Food,2026-08-14,26.74
+1078,La Michoacana,Food,2026-08-14,10.09
+1079,La Michoacana,Food,2026-08-14,7.73
+1080,Taqueria Chapala,Food,2026-08-13,36.99
+1081,Dollar Tree,Shopping,2026-08-13,10.55
+1082,7-Eleven,Transportation,2026-08-13,4.86
+1083,North Star Mall,Shopping,2026-08-12,84.44
+1084,GameStop,Entertainment,2026-08-12,48.70
+1085,Steam Games,Entertainment,2026-08-12,14.60
+1086,Spotify,Entertainment,2026-08-12,14.06
+1087,Chipotle,Food,2026-08-12,10.45
+1088,Round1,Entertainment,2026-08-12,4.86
+1089,Hildebrand Grocery,Food,2026-08-11,25.00
+1090,Buc-ee's,Transportation,2026-08-11,9.73
+1091,Buc-ee's,Transportation,2026-08-11,8.31
+1092,H-E-B #074,Transportation,2026-08-10,19.93
+1093,Whataburger,Food,2026-08-10,13.74
+1094,The Laundry Room,Utilities,2026-08-08,20.00
+1095,Dunkin / Baskin-Robbins,Food,2026-08-08,12.52
+1096,The Laundry Room,Utilities,2026-08-08,1.00
+1097,Hildebrand Grocery,Food,2026-08-06,25.00
+1098,Whataburger,Food,2026-08-06,13.74
+1099,Steam Games,Entertainment,2026-08-04,25.97
+1100,Panera Bread,Food,2026-08-04,5.62
+1101,UTSA RowdyPay,Other,2026-08-03,675.74
+1102,BT *LaptopK,Shopping,2026-08-03,15.98
+1103,SE40541,Other,2026-08-03,8.00
+1104,7-Eleven,Transportation,2026-08-03,1.45
+1105,7-Eleven,Transportation,2026-08-03,0.70
+1106,Grubhub,Food,2026-08-01,11.10
+1107,SE40541,Other,2026-08-01,4.09
+1108,Aramark UTSA,Food,2026-07-30,3.34
+1109,Roblox,Entertainment,2026-07-29,5.40
+1110,Aramark UTSA,Food,2026-07-28,3.34
+1111,Uptown Cheapskate,Shopping,2026-07-27,15.14
+1112,McDonald's,Food,2026-07-27,7.58
+1113,Regal Cinemas,Entertainment,2026-07-25,29.74
+1114,Regal Cinemas,Entertainment,2026-07-25,17.31
+1115,Aramark UTSA,Food,2026-07-25,9.61
+1116,Brindles,Food,2026-07-25,9.20
+1117,Green Acres Golf,Entertainment,2026-07-24,16.24
+1118,Green Acres Golf,Entertainment,2026-07-24,6.50
+1119,Aramark UTSA,Food,2026-07-24,3.34
+1120,McDonald's,Food,2026-07-23,23.87
+1121,Aramark UTSA,Food,2026-07-23,10.81
+1122,Chick-fil-A,Food,2026-07-22,11.25
+1123,Hildebrand Grocery,Food,2026-07-21,8.95
+1124,Nichas Comida Mexicana,Food,2026-07-20,24.79
+1125,Denny's,Food,2026-07-20,22.00
+1126,Bigs 110,Transportation,2026-07-18,5.94
+1127,Walgreens,Shopping,2026-07-18,3.36
+1128,Chili's,Food,2026-07-17,23.00
+1129,Rudy's Country Store,Food,2026-07-14,13.00
+1130,H-E-B #556,Transportation,2026-07-13,27.48
+1131,7-Eleven,Transportation,2026-07-13,6.90
+1132,Henry's Mexican,Food,2026-07-11,13.16
+1133,QuikTrip,Transportation,2026-07-11,8.00
+1134,QuikTrip,Transportation,2026-07-11,4.69
+1135,H-E-B #556,Transportation,2026-07-10,30.57
+1136,Taqueria Datapoint,Food,2026-07-10,15.60
+1137,Shell,Transportation,2026-07-10,13.16
+1138,H-E-B Gas,Transportation,2026-07-10,11.03
+1139,Taqueria Datapoint,Food,2026-07-10,5.00
+1140,Aramark UTSA,Food,2026-07-10,2.99
+1141,7-Eleven,Transportation,2026-07-10,0.64
+1142,Rio Grande Food,Food,2026-07-09,17.00
+1143,H-E-B #556,Transportation,2026-07-09,10.53
+1144,Aramark UTSA,Food,2026-07-09,5.04
+1145,Hildebrand Grocery,Food,2026-07-08,25.00
+1146,Little Caesars,Food,2026-07-08,17.30
+1147,Aramark UTSA,Food,2026-07-08,3.56
+1148,El Valle Fruteria,Food,2026-07-07,15.61
+1149,Circle K,Transportation,2026-07-07,11.00
+1150,Raising Cane's,Food,2026-07-06,31.04
+1151,Eddie's Taco House,Food,2026-07-06,30.68
+1152,H-E-B #556,Transportation,2026-07-06,24.50
+1153,Eddie's Taco House,Food,2026-07-06,23.52
+1154,Taqueria Datapoint,Food,2026-07-06,22.60
+1155,Spencer Gifts,Shopping,2026-07-06,21.65
+1156,Hildebrand Grocery,Food,2026-07-06,20.00
+1157,Taqueria La Tapatia,Food,2026-07-06,18.37
+1158,Wok A Holic,Food,2026-07-06,17.83
+1159,Luciano,Food,2026-07-06,16.57
+1160,Hildebrand Grocery,Food,2026-07-06,15.91
+1161,Circle K,Transportation,2026-07-06,14.07
+1162,Circle K,Transportation,2026-07-06,12.14
+1163,Hildebrand Grocery,Food,2026-07-06,12.00
+1164,7-Eleven,Transportation,2026-07-06,11.83
+1165,LEGO North Star,Shopping,2026-07-06,6.48
+1166,Hildebrand Grocery,Food,2026-07-06,2.91
+1167,7-Eleven,Transportation,2026-07-06,2.89
+1168,Round1,Entertainment,2026-07-06,1.07
+1169,Luciano,Food,2026-07-06,1.07
+1170,HT Auto Service,Transportation,2026-07-03,82.40
+1171,Goodwill,Shopping,2026-07-03,72.96
+1172,Walmart,Shopping,2026-07-03,54.24
+1173,Hildebrand Grocery,Food,2026-07-03,21.00
+1174,Texas Food Mart,Transportation,2026-07-03,15.99
+1175,SE40541,Other,2026-07-03,12.01
+1176,Walmart,Shopping,2026-07-03,6.73
+1177,Jack in the Box,Food,2026-07-03,2.05
+1178,Circle K,Transportation,2026-07-02,19.07
+1179,City Base Cinema,Entertainment,2026-07-02,13.00
+1180,City Base Cinema,Entertainment,2026-07-02,8.70
+1181,Henry's Mexican,Food,2026-06-30,13.16
+1182,Taqueria Vallarta,Food,2026-06-29,24.23
+1183,El Manantial Restaurant,Food,2026-06-29,23.28
+1184,Taqueria Datapoint,Food,2026-06-29,20.81
+1185,Uno Xpress,Transportation,2026-06-29,11.07
+1186,EZPlus.com,Other,2026-06-29,6.53
+1187,EZPlus.com,Other,2026-06-29,3.73
+1188,Circle K,Transportation,2026-06-29,2.70
+1189,EZPlus.com,Other,2026-06-29,2.33
+1190,H-E-B Gas,Transportation,2026-06-27,12.01
+1191,Flying J,Transportation,2026-06-27,3.24
+1192,Taqueria Datapoint,Food,2026-06-25,13.75
+1193,Jarrito's Mexican,Food,2026-06-25,12.52
+1194,Hildebrand Grocery,Food,2026-06-25,6.55
+1195,Taqueria Chapala,Food,2026-06-24,23.48
+1196,Hildebrand Grocery,Food,2026-06-24,19.99
+1197,SE40541,Other,2026-06-24,18.05
+1198,Circle K,Transportation,2026-06-24,15.99
+1199,H-E-B #556,Transportation,2026-06-22,29.49
+1200,Eddie's Taco House,Food,2026-06-22,28.98
+1201,Taco Palenque,Food,2026-06-22,26.86
+1202,Panchitos,Food,2026-06-22,26.42
+1203,Hildebrand Grocery,Food,2026-06-22,16.26
+1204,H-E-B Gas,Transportation,2026-06-22,9.99
+1205,QuikTrip,Transportation,2026-06-22,2.89
+1206,EZPawn,Shopping,2026-06-20,52.87
+1207,Hildebrand Grocery,Food,2026-06-20,45.00
+1208,Taqueria Chapala,Food,2026-06-20,39.11
+1209,Hildebrand Grocery,Food,2026-06-20,19.99
+1210,Circle K,Transportation,2026-06-20,13.60
+1211,Golden Food Mart,Food,2026-06-20,7.00
+1212,Aramark UTSA,Food,2026-06-20,3.34
+1213,Little Caesars,Food,2026-06-18,22.71
+1214,Jarrito's Mexican,Food,2026-06-18,12.52
+1215,Blancostar,Other,2026-06-18,6.00
+1216,Circle K,Transportation,2026-06-17,11.07
+1217,H-E-B #556,Transportation,2026-06-17,9.99
+1218,Taqueria Datapoint,Food,2026-06-15,18.39
+1219,Jarrito's Mexican,Food,2026-06-13,19.10
+1220,Cerrito Restaurant,Food,2026-06-12,40.85
+1221,Circle K,Transportation,2026-06-12,11.99
+1222,Taqueria Chapala,Food,2026-06-11,20.50
+1223,The Haven South,Other,2026-06-09,26.42
+1224,Zumiez,Shopping,2026-06-08,48.57
+1225,GameStop,Entertainment,2026-06-08,16.22
+1226,Hildebrand Grocery,Food,2026-06-08,13.00
+1227,Taqueria Datapoint,Food,2026-06-08,12.10
+1228,Bill Miller Bar-B-Q,Food,2026-06-08,5.62
+1229,QuikTrip,Transportation,2026-06-06,20.02

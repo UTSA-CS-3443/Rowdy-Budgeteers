@@ -184,11 +184,10 @@ public class DataManager {
         double budgetLimit;
         LocalDate startDate;
         LocalDate endDate;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         try {
             budgetLimit = Double.parseDouble(tokens[2].trim());
-            startDate = LocalDate.parse(tokens[3].trim(), formatter);
-            endDate = LocalDate.parse(tokens[4].trim(), formatter);
+            startDate = LocalDate.parse(tokens[3].trim());
+            endDate = LocalDate.parse(tokens[4].trim());
         } catch (NumberFormatException | DateTimeParseException e) {
             return null;
         }
@@ -197,7 +196,7 @@ public class DataManager {
     public boolean writeBudgetToFile(){
         String filePath = "data/budget/" + loggedInUser + "_budget.csv";
         try(BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))){
-            writer.write("");
+            writer.write("(String budgetID, String budgetType, double budgetLimit, LocalDate startDate, LocalDate endDate)");
             writer.newLine();
             for (Budget b : budgets){
                 writer.write(b.toCSVString());
@@ -287,7 +286,7 @@ public class DataManager {
     public boolean writeTransactionsToFile(){
         String filePath = "data/transactions/" + loggedInUser + "_transactions.csv";
         try(BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))){
-            writer.write("");
+            writer.write("(String transactionID, String purchaseName, String purchaseType, LocalDate date, double cost)");
             writer.newLine();
             for (Transaction t : transactions){
                 writer.write(t.toCSVString());
