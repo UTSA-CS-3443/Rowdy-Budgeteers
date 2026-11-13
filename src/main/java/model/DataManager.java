@@ -13,6 +13,7 @@ public class DataManager {
     private List<Transaction> transactions;
     //comment
     private String dataDirectory;
+    String loggedInUser = "Test";
 
     public DataManager() throws FileNotFoundException {
         users = new ArrayList<>();
@@ -26,135 +27,8 @@ public class DataManager {
         if (!directory.exists()) {
             directory.mkdir();
         }
-        loadUsers();
-        loadBudgets();
     }
 
-    // CREATE SUPPORT
-
-    public boolean addPerson(Person person) {
-        if (person == null || !person.createPerson()) {
-            return false;
-        }
-
-        if (findPerson(person.getUserName()) != null) {
-            return false;
-        }
-
-        users.add(person);
-        saveUsers();
-
-        return true;
-    }
-
-    public boolean addBudget(Budget budget) {
-        if (budget == null || !budget.validateBudget()) {
-            return false;
-        }
-
-        if (findBudget(budget.getBudgetID()) != null) {
-            return false;
-        }
-
-        budgets.add(budget);
-        saveBudgets();
-
-        return true;
-    }
-
-    public boolean addTransaction(Transaction transaction) {
-        if (transaction == null || !transaction.validateTransaction()) {
-            return false;
-        }
-
-        if (findTransaction(transaction.getTransactionID()) != null) {
-            return false;
-        }
-
-        transactions.add(transaction);
-        saveTransactions();
-
-        return true;
-    }
-
-    // FIND METHODS
-
-    public Person findPerson(String userName) {
-        for (Person person : users) {
-            if (person.getUserName().equals(userName)) {
-                return person;
-            }
-        }
-
-        return null;
-    }
-
-    public Budget findBudget(String budgetID) {
-        for (Budget budget : budgets) {
-            if (budget.getBudgetID().equals(budgetID)) {
-                return budget;
-            }
-        }
-
-        return null;
-    }
-
-    public Transaction findTransaction(String transactionID) {
-        for (Transaction transaction : transactions) {
-            if (transaction.getTransactionID().equals(transactionID)) {
-                return transaction;
-            }
-        }
-
-        return null;
-    }
-
-    public boolean deleteTransaction(String transactionID) {
-
-        if (transactionID == null || transactionID.isEmpty()) {
-            return false;
-        }
-
-        for (int i = 0; i < transactions.size(); i++) {
-
-            if (transactions.get(i).getTransactionID().equals(transactionID)) {
-
-                transactions.remove(i);
-                saveTransactions();
-
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    // SAVE METHODS
-
-    public void saveUsers() {
-        saveList(users, "users.dat");
-    }
-
-    public void saveBudgets() {
-        saveList(budgets, "budgets.dat");
-    }
-
-    public void saveTransactions() {
-        saveList(transactions, "transactions.dat");
-    }
-
-    private void saveList(List<?> list, String fileName) {
-        try (ObjectOutputStream output = new ObjectOutputStream(
-                new FileOutputStream(dataDirectory + "/" + fileName))) {
-
-            output.writeObject(list);
-
-        } catch (IOException e) {
-            System.out.println("Error saving " + fileName + ": " + e.getMessage());
-        }
-    }
-
-    // LOAD METHOD
 
     public void loadUsers() {
         users = new ArrayList<>();
@@ -177,10 +51,123 @@ public class DataManager {
         }
     }
 
-    public void loadBudgets() {
-        budgets = loadList("budgets.dat");
-    }
 
+
+
+    //USER METHODS HERE - CURRENTLY WORKING ON
+    public List<Person> getUsers() {
+        return users;
+    }
+    public boolean addPerson(Person person) {
+        if (person == null || !person.createPerson()) {
+            return false;
+        }
+
+        if (findPerson(person.getUserName()) != null) {
+            return false;
+        }
+
+        users.add(person);
+        saveUsers();
+
+        return true;
+    }
+    public Person findPerson(String userName) {
+        for (Person person : users) {
+            if (person.getUserName().equals(userName)) {
+                return person;
+            }
+        }
+
+        return null;
+    }
+    //public boolean deleteUser(String userName)
+    //public boolean updateUser(Person updatedPerson)
+    //public void loadUsers
+    //private Transaction convertLineToUser(String line)
+    //public boolean writeUserToFile()
+
+    //BUDGET METHODS HERE - HAVEN'T STARTED
+    public List<Budget> getBudgets() {
+        return budgets;
+    }
+    public boolean addBudget(Budget budget) {
+        if (budget == null || !budget.validateBudget()) {
+            return false;
+        }
+
+        if (findBudget(budget.getBudgetID()) != null) {
+            return false;
+        }
+
+        budgets.add(budget);
+        saveBudgets();
+
+        return true;
+    }
+    public Budget findBudget(String budgetID) {
+        for (Budget budget : budgets) {
+            if (budget.getBudgetID().equals(budgetID)) {
+                return budget;
+            }
+        }
+
+        return null;
+    }
+    //public boolean deleteBudget(String budgetID)
+    //public boolean updateBudget(Transaction updatedBudget)
+    //public void loadBudgets()
+    //private Transaction convertLineToBudget(String line)
+    //public boolean writeBudgetToFile()
+
+
+    // TRANSACTION METHODS COMPLETE
+    public List<Transaction> getTransactions() {
+        return transactions;
+    }
+    public boolean addTransaction(Transaction transaction) {
+        if (transaction == null || !transaction.validateTransaction()) {
+            return false;
+        }
+
+        if (findTransaction(transaction.getTransactionID()) != null) {
+            return false;
+        }
+
+        transactions.add(transaction);
+
+        return writeTransactionsToFile();
+    }
+    public Transaction findTransaction(String transactionID) {
+        for (Transaction transaction : transactions) {
+            if (transaction.getTransactionID().equals(transactionID)) {
+                return transaction;
+            }
+        }
+        return null;
+    }
+    public boolean deleteTransaction(String transactionID) {
+        if (transactionID == null || transactionID.isEmpty()) {
+            return false;
+        }
+        for (int i = 0; i < transactions.size(); i++) {
+            if (transactions.get(i).getTransactionID().equals(transactionID)) {
+                transactions.remove(i);
+                return writeTransactionsToFile();
+            }
+        }
+        return false;
+    }
+    public boolean updateTransactions(Transaction updatedTransaction) {
+        if (transactions == null || updatedTransaction == null) return false;
+        for (int i = 0; i < transactions.size(); i++){
+            if (transactions.get(i).getTransactionID().equals(updatedTransaction.getTransactionID())){
+                transactions.set(i, updatedTransaction);
+                return writeTransactionsToFile();
+            }
+        }
+        return false;
+    }
     public void loadTransactions(String fileName) throws FileNotFoundException {
         File userTransactions = new File(fileName);
 
@@ -197,7 +184,6 @@ public class DataManager {
         }
         scan.close();
     }
-
     private Transaction convertLineToTransaction(String line){
         if (line.trim().isEmpty()) {
             return null;
@@ -218,6 +204,22 @@ public class DataManager {
         }
         return new Transaction(transactionID, transactionName, transactionType, transactionDate, transactionCost);
     }
+    public boolean writeTransactionsToFile(){
+        String filePath = "data/transactions/" + loggedInUser + "_transactions.csv";
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))){
+            writer.write("");
+            writer.newLine();
+            for (Transaction t : transactions){
+                writer.write(t.toCSVString());
+                writer.newLine();
+            }
+            return true;
+        } catch(IOException e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 
     @SuppressWarnings("unchecked")
     private <T> List<T> loadList(String fileName) {
@@ -237,16 +239,4 @@ public class DataManager {
             return new ArrayList<>();
         }
     }
-    public List<Transaction> getTransactions() {
-        return transactions;
-    }
-
-    public List<Budget> getBudgets() {
-        return budgets;
-    }
-
-    public List<Person> getUsers() {
-        return users;
-    }
-    //riddah was here
 }

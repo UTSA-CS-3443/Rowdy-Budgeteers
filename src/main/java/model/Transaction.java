@@ -63,4 +63,26 @@ public class Transaction implements Serializable {
             this.cost = cost;
         }
     }
+
+    public String toCSVString() {
+        return String.join(",",
+                escapeCSV(transactionID),
+                escapeCSV(purchaseName),
+                escapeCSV(purchaseType),
+                escapeCSV(date),
+                String.valueOf(cost)
+        );
+    }
+
+    private String escapeCSV(String value) {
+        if (value == null) {
+            return "";
+        }
+        if (value.contains(",") || value.contains("\"") || value.contains("\n")) {
+            value = value.replace("\"", "\"\"");
+            return "\"" + value + "\"";
+        }
+        return value;
+    }
+
 }
