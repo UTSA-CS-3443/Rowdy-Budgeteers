@@ -117,7 +117,7 @@ public class DataManager {
         }
     }
 
-    //BUDGET METHODS HERE - HAVEN'T STARTED
+    //BUDGET METHODS COMPLETE
     public List<Budget> getBudgets() {
         return budgets;
     }
@@ -263,7 +263,6 @@ public class DataManager {
         }
         scan.close();
     }
-
     private Transaction convertLineToTransaction(String line){
         if (line.trim().isEmpty()) {
             return null;
