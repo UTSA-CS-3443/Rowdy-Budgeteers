@@ -54,38 +54,88 @@ public class DataManager {
 
 
 
-    //USER METHODS HERE - CURRENTLY WORKING ON
+    //USER METHODS COMPLETE
     public List<Person> getUsers() {
         return users;
     }
     public boolean addPerson(Person person) {
-        if (person == null || !person.createPerson()) {
-            return false;
-        }
-
-        if (findPerson(person.getUserName()) != null) {
-            return false;
-        }
-
+        if (person == null || !person.createPerson()) return false;
+        if (findPerson(person.getUserName()) != null) return false;
         users.add(person);
-        saveUsers();
-
-        return true;
+        return writeUsersToFile();
     }
     public Person findPerson(String userName) {
         for (Person person : users) {
-            if (person.getUserName().equals(userName)) {
-                return person;
-            }
+            if (person.getUserName().equals(userName)) return person;
         }
-
         return null;
     }
-    //public boolean deleteUser(String userName)
-    //public boolean updateUser(Person updatedPerson)
-    //public void loadUsers
-    //private Transaction convertLineToUser(String line)
-    //public boolean writeUserToFile()
+    public boolean deleteUser(String userName){
+        if(userName == null || userName.isEmpty()) return false;
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getUserName().equals(userName)) {
+                users.remove(i);
+                return writeUsersToFile();
+            }
+        }
+        return false;
+
+    }
+    public boolean updateUser(Person updatedUser){
+        if (users == null || updatedUser == null) return false;
+        for (int i = 0; i < users.size(); i++){
+            if (users.get(i).getUserName().equals(updatedUser.getUserName())){
+                users.set(i, updatedUser);
+                return writeUsersToFile();
+            }
+        }
+        return false;
+    }
+    public void loadUsers(String fileName) throws FileNotFoundException{
+        File user = new File(fileName);
+
+        Scanner scan = new Scanner(user);
+        if (scan.hasNextLine()){
+            scan.hasNextLine();
+        }
+        while(scan.hasNextLine()){
+            String line = scan.nextLine();
+            Person person = convertLineToUser(line);
+            if (person != null){
+                boolean t = addPerson(person);
+            }
+        }
+        scan.close();
+    }
+    private Person convertLineToUser(String line){
+        if (line.trim().isEmpty()) {
+            return null;
+        }
+        String[] tokens = line.split(",");
+        if (tokens.length != 4){
+            return null;
+        }
+        String userName = tokens[0];
+        String userEmail = tokens[1];
+        String userUserName= tokens[2];
+        String userPassword = tokens[3];
+        return new Person(userName, userEmail, userUserName, userPassword);
+    }
+    public boolean writeUsersToFile(){
+        String filePath = "data/users.csv";
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))){
+            writer.write("");
+            writer.newLine();
+            for (Person p : users){
+                writer.write(p.toCSVString());
+                writer.newLine();
+            }
+            return true;
+        } catch(IOException e){
+            e.printStackTrace();
+            return false;
+        }
+    }
 
     //BUDGET METHODS HERE - HAVEN'T STARTED
     public List<Budget> getBudgets() {
@@ -126,30 +176,19 @@ public class DataManager {
         return transactions;
     }
     public boolean addTransaction(Transaction transaction) {
-        if (transaction == null || !transaction.validateTransaction()) {
-            return false;
-        }
-
-        if (findTransaction(transaction.getTransactionID()) != null) {
-            return false;
-        }
-
+        if (transaction == null || !transaction.validateTransaction()) return false;
+        if (findTransaction(transaction.getTransactionID()) != null) return false;
         transactions.add(transaction);
-
         return writeTransactionsToFile();
     }
     public Transaction findTransaction(String transactionID) {
         for (Transaction transaction : transactions) {
-            if (transaction.getTransactionID().equals(transactionID)) {
-                return transaction;
-            }
+            if (transaction.getTransactionID().equals(transactionID)) return transaction;
         }
         return null;
     }
     public boolean deleteTransaction(String transactionID) {
-        if (transactionID == null || transactionID.isEmpty()) {
-            return false;
-        }
+        if (transactionID == null || transactionID.isEmpty()) return false;
         for (int i = 0; i < transactions.size(); i++) {
             if (transactions.get(i).getTransactionID().equals(transactionID)) {
                 transactions.remove(i);

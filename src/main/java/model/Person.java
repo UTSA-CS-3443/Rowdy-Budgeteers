@@ -52,4 +52,23 @@ public class Person{
     public boolean authenticate(String password) {
         return this.password != null && this.password.equals(password);
     }
+    public String toCSVString() {
+        return String.join(",",
+                escapeCSV(name),
+                escapeCSV(email),
+                escapeCSV(userName),
+                escapeCSV(password)
+        );
+    }
+
+    private String escapeCSV(String value) {
+        if (value == null) {
+            return "";
+        }
+        if (value.contains(",") || value.contains("\"") || value.contains("\n")) {
+            value = value.replace("\"", "\"\"");
+            return "\"" + value + "\"";
+        }
+        return value;
+    }
 }
