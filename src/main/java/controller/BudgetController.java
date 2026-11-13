@@ -179,8 +179,7 @@ public class BudgetController {
 
         String budgetID = UUID.randomUUID().toString();
 
-        Budget budget = new Budget(
-                budgetID, category, amount, startDate, endDate);
+        Budget budget = new Budget(budgetID, category, amount, startDate, endDate);
 
         if (dataManager.addBudget(budget)) {
             messageLabel.setText("Budget added successfully!");

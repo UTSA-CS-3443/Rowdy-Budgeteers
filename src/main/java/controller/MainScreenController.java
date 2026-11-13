@@ -219,36 +219,27 @@ public class MainScreenController {
 
     @FXML
     private void handleLogout() {
-
         try {
-
             BankingApplication.changeScene(
                     "login-screen.fxml",
                     dataManager,
-                    null
-            );
+                    null);
 
         } catch (Exception e) {
 
             e.printStackTrace();
         }
     }
-
-
     // HELPER METHOD FOR SCREEN SWITCHING
-
     private void changeScreen(String fxmlFile) {
 
         try {
-
             BankingApplication.changeScene(
                     fxmlFile,
                     dataManager,
-                    currentPerson
-            );
+                    currentPerson);
 
         } catch (Exception e) {
-
             e.printStackTrace();
         }
     }
