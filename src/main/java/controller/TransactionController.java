@@ -217,6 +217,10 @@ public class TransactionController {
 
 
         // Generate a unique transaction ID
+
+        // TRANSACTIONID should be something simple since the user has to type it to update/delete existing transaction.
+        // same thing for budgets and reports. will discuss further
+
         String transactionID = UUID.randomUUID().toString();
 
 
