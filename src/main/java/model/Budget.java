@@ -13,10 +13,7 @@ public class Budget implements Serializable {
     private LocalDate startDate;
     private LocalDate endDate;
 
-    public Budget(String budgetID, String budgetType,
-                  double budgetLimit, LocalDate startDate,
-                  LocalDate endDate) {
-
+    public Budget(String budgetID, String budgetType, double budgetLimit, LocalDate startDate, LocalDate endDate) {
         this.budgetID = budgetID;
         this.budgetType = budgetType;
         this.budgetLimit = budgetLimit;
@@ -52,4 +49,26 @@ public class Budget implements Serializable {
     public void setBudgetLimit(double budgetLimit) {
         this.budgetLimit = budgetLimit;
     }
+//    public Budget(String budgetID, String budgetType, double budgetLimit, LocalDate startDate, LocalDate endDate) {
+    public String toCSVString() {
+        return String.join(",",
+                escapeCSV(budgetID),
+                escapeCSV(budgetType),
+                String.valueOf(budgetLimit),
+                String.valueOf(startDate),
+                String.valueOf(endDate)
+        );
+    }
+
+    private String escapeCSV(String value) {
+        if (value == null) {
+            return "";
+        }
+        if (value.contains(",") || value.contains("\"") || value.contains("\n")) {
+            value = value.replace("\"", "\"\"");
+            return "\"" + value + "\"";
+        }
+        return value;
+    }
+
 }

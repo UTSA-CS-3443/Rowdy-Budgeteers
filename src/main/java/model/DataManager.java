@@ -1,6 +1,9 @@
 package main.java.model;
 
 import java.io.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -28,29 +31,6 @@ public class DataManager {
             directory.mkdir();
         }
     }
-
-
-    public void loadUsers() {
-        users = new ArrayList<>();
-
-        try (Scanner scan = new Scanner(
-                new File(dataDirectory + "/users.csv"))) {
-
-            while (scan.hasNextLine()) {
-                String[] data = scan.nextLine().split(",");
-
-                if (data.length == 4) {
-                    users.add(new Person(
-                            data[0], data[1], data[2], data[3]
-                    ));
-                }
-            }
-
-        } catch (FileNotFoundException e) {
-            System.out.println("Users file not found.");
-        }
-    }
-
 
 
 
@@ -93,7 +73,6 @@ public class DataManager {
     }
     public void loadUsers(String fileName) throws FileNotFoundException{
         File user = new File(fileName);
-
         Scanner scan = new Scanner(user);
         if (scan.hasNextLine()){
             scan.hasNextLine();
@@ -142,18 +121,10 @@ public class DataManager {
         return budgets;
     }
     public boolean addBudget(Budget budget) {
-        if (budget == null || !budget.validateBudget()) {
-            return false;
-        }
-
-        if (findBudget(budget.getBudgetID()) != null) {
-            return false;
-        }
-
+        if (budget == null || !budget.validateBudget()) return false;
+        if (findBudget(budget.getBudgetID()) != null) return false;
         budgets.add(budget);
-        saveBudgets();
-
-        return true;
+        return writeBudgetToFile();
     }
     public Budget findBudget(String budgetID) {
         for (Budget budget : budgets) {
@@ -161,14 +132,81 @@ public class DataManager {
                 return budget;
             }
         }
-
         return null;
     }
-    //public boolean deleteBudget(String budgetID)
-    //public boolean updateBudget(Transaction updatedBudget)
-    //public void loadBudgets()
-    //private Transaction convertLineToBudget(String line)
-    //public boolean writeBudgetToFile()
+    public boolean deleteBudget(String budgetID){
+        if (budgetID == null || budgetID.isEmpty()) return false;
+        for (int i = 0; i < budgets.size(); i++) {
+            if (budgets.get(i).getBudgetID().equals(budgetID)) {
+                budgets.remove(i);
+                return writeBudgetToFile();
+            }
+        }
+        return false;
+    }
+    public boolean updateBudget(Budget updatedBudget){
+        if (budgets == null || updatedBudget == null) return false;
+        for (int i = 0; i < budgets.size(); i++){
+            if (budgets.get(i).getBudgetID().equals(updatedBudget.getBudgetID())){
+                budgets.set(i, updatedBudget);
+                return writeTransactionsToFile();
+            }
+        }
+        return false;
+    }
+    public void loadBudgets(String fileName) throws FileNotFoundException{
+        File userBudget = new File(fileName);
+        Scanner scan = new Scanner(userBudget);
+        if (scan.hasNextLine()){
+            scan.hasNextLine();
+        }
+        while(scan.hasNextLine()){
+            String line = scan.nextLine();
+            Budget budget = convertLineToBudget(line);
+            if (budget != null){
+                boolean t = addBudget(budget);
+            }
+        }
+        scan.close();
+    }
+    private Budget convertLineToBudget(String line){
+        if (line.trim().isEmpty()) {
+            return null;
+        }
+        String[] tokens = line.split(",");
+        if (tokens.length != 5){
+            return null;
+        }
+        String budgetID = tokens[0].trim();
+        String budgetType = tokens[1].trim();
+        double budgetLimit;
+        LocalDate startDate;
+        LocalDate endDate;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        try {
+            budgetLimit = Double.parseDouble(tokens[2].trim());
+            startDate = LocalDate.parse(tokens[3].trim(), formatter);
+            endDate = LocalDate.parse(tokens[4].trim(), formatter);
+        } catch (NumberFormatException | DateTimeParseException e) {
+            return null;
+        }
+        return new Budget(budgetID, budgetType, budgetLimit, startDate, endDate);
+    }
+    public boolean writeBudgetToFile(){
+        String filePath = "data/budget/" + loggedInUser + "_budget.csv";
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))){
+            writer.write("");
+            writer.newLine();
+            for (Budget b : budgets){
+                writer.write(b.toCSVString());
+                writer.newLine();
+            }
+            return true;
+        } catch(IOException e){
+            e.printStackTrace();
+            return false;
+        }
+    }
 
 
     // TRANSACTION METHODS COMPLETE
