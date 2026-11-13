@@ -78,21 +78,15 @@ public class LoginController {
             }
 
             messageLabel.setText("Login successful!");
-
             System.out.println(
                     "Welcome, " + currentPerson.getName() + "!");
 
             try {
-
                 BankingApplication.changeScene("main-screen.fxml", dataManager, currentPerson);
 
             } catch (Exception e) {
-
                 e.printStackTrace();
-
-                messageLabel.setText(
-                        "Unable to load the main screen."
-                );
+                messageLabel.setText("Unable to load the main screen.");
             }
 
         } else {
@@ -101,8 +95,6 @@ public class LoginController {
                     "Invalid username or password.");
         }
     }
-
-
     // REGISTER
 
     public boolean register(String name, String email,
@@ -113,8 +105,6 @@ public class LoginController {
 
         return dataManager.addPerson(newPerson);
     }
-
-
     // LOGIN LOGIC
 
     public boolean login(String userName, String password) {
@@ -127,23 +117,16 @@ public class LoginController {
 
             return true;
         }
-
         return false;
     }
-
-
     // LOGOUT
 
     public void logout() {
 
         currentPerson = null;
     }
-
-
     // GET CURRENT USER
-
     public Person getCurrentPerson() {
-
         return currentPerson;
     }
 

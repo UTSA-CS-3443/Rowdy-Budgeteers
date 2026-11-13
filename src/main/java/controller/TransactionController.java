@@ -90,9 +90,7 @@ public class TransactionController {
                         "Housing",
                         "Utilities",
                         "Healthcare",
-                        "Other"
-                )
-        );
+                        "Other"));
 
         // Set up the transaction table
         setupTable();
@@ -107,38 +105,19 @@ public class TransactionController {
     private void setupTable() {
 
         transactionIDColumn.setCellValueFactory(cellData ->
-                new ReadOnlyStringWrapper(
-                        cellData.getValue().getTransactionID()
-                )
-        );
+                new ReadOnlyStringWrapper(cellData.getValue().getTransactionID()));
 
         purchaseColumn.setCellValueFactory(cellData ->
-                new ReadOnlyStringWrapper(
-                        cellData.getValue().getPurchaseName()
-                )
-        );
+                new ReadOnlyStringWrapper(cellData.getValue().getPurchaseName()));
 
         categoryColumn.setCellValueFactory(cellData ->
-                new ReadOnlyStringWrapper(
-                        cellData.getValue().getPurchaseType()
-                )
-        );
+                new ReadOnlyStringWrapper(cellData.getValue().getPurchaseType()));
 
         dateColumn.setCellValueFactory(cellData ->
-                new ReadOnlyStringWrapper(
-                        cellData.getValue().getDate().toString()
-                )
-        );
+                new ReadOnlyStringWrapper(cellData.getValue().getDate().toString()));
 
         amountColumn.setCellValueFactory(cellData ->
-                new ReadOnlyStringWrapper(
-                        String.format(
-                                Locale.US,
-                                "$%,.2f",
-                                cellData.getValue().getCost()
-                        )
-                )
-        );
+                new ReadOnlyStringWrapper(String.format(Locale.US, "$%,.2f", cellData.getValue().getCost())));
     }
 
 
