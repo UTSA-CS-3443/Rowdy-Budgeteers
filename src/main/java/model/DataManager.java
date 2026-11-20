@@ -121,6 +121,25 @@ public class DataManager {
     public List<Budget> getBudgets() {
         return budgets;
     }
+    ////////////////////NEW CODE ADDED IN REMOVE IF NOT NEEDED///////////////
+    public String generateNextBudgetID() {
+        int highestID = 999;
+
+        for (Budget budget : budgets) {
+            try {
+                int currentID = Integer.parseInt(budget.getBudgetID());
+
+                if (currentID > highestID) {
+                    highestID = currentID;
+                }
+            } catch (NumberFormatException e) {
+                // Ignore non-numeric IDs.
+            }
+        }
+
+        return String.valueOf(highestID + 1);
+    }
+    ///////////////////////////////////////////////////////////
     public boolean addBudget(Budget budget) {
         if (budget == null || !budget.validateBudget()) return false;
         if (findBudget(budget.getBudgetID()) != null) return false;
@@ -128,20 +147,24 @@ public class DataManager {
         return writeBudgetToFile();
     }
 ////////////////If code gives error, remove and we will settle with the old random numbers/////
-    public String generateNextBudgetID() {
-        int highestID = 999;
-        for (Budget budget : budgets) {
-            try {
-                int currentID = Integer.parseInt(budget.getBudgetID());
-                if (currentID > highestID) {
-                    highestID = currentID;
-                }
-            } catch (NumberFormatException e) {
-                // Ignore IDs that are not numbers.
+public String generateNextTransactionID() {
+    int highestID = 999;
+
+    for (Transaction transaction : transactions) {
+        try {
+            int currentID = Integer.parseInt(
+                    transaction.getTransactionID());
+
+            if (currentID > highestID) {
+                highestID = currentID;
             }
+        } catch (NumberFormatException e) {
+            // Ignore non-numeric IDs
         }
-        return String.valueOf(highestID + 1);
     }
+
+    return String.valueOf(highestID + 1);
+}
     public Budget findBudget(String budgetID) {
         for (Budget budget : budgets) {
             if (budget.getBudgetID().equals(budgetID)) {
@@ -165,7 +188,8 @@ public class DataManager {
         for (int i = 0; i < budgets.size(); i++){
             if (budgets.get(i).getBudgetID().equals(updatedBudget.getBudgetID())){
                 budgets.set(i, updatedBudget);
-                return writeTransactionsToFile();
+                return writeBudgetToFile();
+                ////////CHANGED WRITETRANSACTIONS TO FILE TO WRITEBUDGETTOFILE//////
             }
         }
         return false;

@@ -177,8 +177,7 @@ public class BudgetController {
             return;
         }
 
-        String budgetID = UUID.randomUUID().toString();
-
+        String budgetID = dataManager.generateNextBudgetID();
         Budget budget = new Budget(budgetID, category, amount, startDate, endDate);
 
         if (dataManager.addBudget(budget)) {
