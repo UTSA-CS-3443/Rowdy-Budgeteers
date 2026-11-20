@@ -1,5 +1,9 @@
 package main.java.model;
 
+//the button tab has no budgets, but the file made has a budget info listed. may not be updating properly or reading property
+
+
+
 import java.io.Serializable;
 import java.time.LocalDate;
 

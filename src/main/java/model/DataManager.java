@@ -127,6 +127,21 @@ public class DataManager {
         budgets.add(budget);
         return writeBudgetToFile();
     }
+////////////////If code gives error, remove and we will settle with the old random numbers/////
+    public String generateNextBudgetID() {
+        int highestID = 999;
+        for (Budget budget : budgets) {
+            try {
+                int currentID = Integer.parseInt(budget.getBudgetID());
+                if (currentID > highestID) {
+                    highestID = currentID;
+                }
+            } catch (NumberFormatException e) {
+                // Ignore IDs that are not numbers.
+            }
+        }
+        return String.valueOf(highestID + 1);
+    }
     public Budget findBudget(String budgetID) {
         for (Budget budget : budgets) {
             if (budget.getBudgetID().equals(budgetID)) {
