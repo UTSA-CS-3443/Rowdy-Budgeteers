@@ -140,6 +140,7 @@ public class BudgetController {
         budgetList.sort(Comparator.comparing(Budget::getBudgetType));
 
         budgetsTable.setItems(FXCollections.observableArrayList(budgetList));
+        budgetsTable.refresh();
     }
 
     @FXML

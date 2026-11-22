@@ -137,6 +137,7 @@ public class TransactionController {
         transactionsTable.setItems(
                 FXCollections.observableArrayList(transactionList)
         );
+        transactionsTable.refresh();
     }
 
 
@@ -289,7 +290,6 @@ public class TransactionController {
 
             return;
         }
-
 
         // Update the selected transaction
         selectedTransaction.updateTransaction(newAmount);
